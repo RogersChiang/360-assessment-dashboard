@@ -437,11 +437,11 @@ new Chart(document.getElementById('radarChart'), {
   }
 });
 
-// ─── Bar Chart (in question order) ───
+// ─── Bar Chart (in question order, Q labels only) ───
 new Chart(document.getElementById('barChart'), {
   type: 'bar',
   data: {
-    labels: Q_KEYS.map(q => Q_TITLES[q]),
+    labels: Q_KEYS.map(q => q),
     datasets: [{
       label: '平均分',
       data: Q_KEYS.map(q => qAvgs[q]),
@@ -464,11 +464,16 @@ new Chart(document.getElementById('barChart'), {
     indexAxis: 'y', responsive: true, maintainAspectRatio: false,
     scales: {
       x: { min: 1, max: 5, ticks: { stepSize: 1, font: { size: 10 } }, grid: { color: '#eee' } },
-      y: { ticks: { font: { size: 10 } } }
+      y: { ticks: { font: { size: 11, weight: '600' } } }
     },
     plugins: {
       legend: { display: false },
-      tooltip: { callbacks: { label: ctx => '平均分: ' + ctx.raw.toFixed(2) } }
+      tooltip: {
+        callbacks: {
+          title: ctx => ctx[0].label + ' · ' + Q_FULL_TEXT[ctx[0].label],
+          label: ctx => '平均分: ' + ctx.raw.toFixed(2) + ' · 维度: ' + Q_TO_DIM[ctx[0].label]
+        }
+      }
     }
   }
 });
@@ -589,24 +594,6 @@ function classifyIDP(avgScore) {
   if (avgScore >= 3.0) return { label: '⚠️ 部分达成', cls: 'partial' };
   return { label: '❌ 待提升', cls: 'unachieved' };
 }
-function getQCommentsForEval(qId, relation) {
-  // Return notable (non-null) comments for this question from evaluators of given relation
-  const qIdx = Q_KEYS.indexOf(qId);
-  if (qIdx < 0) return [];
-  const results = [];
-  EVALUATORS.forEach((e, eIdx) => {
-    if (relation && e.relation !== relation) return;
-    const d = DATA.data[qIdx][eIdx];
-    if (!d || !d.comments) return;
-    for (const k of Object.keys(d.comments)) {
-      const txt = d.comments[k];
-      if (txt && txt.length > 5) {
-        results.push({ author: e.name + '（' + e.relation + '）', text: txt });
-      }
-    }
-  });
-  return results.slice(0, 2);
-}
 
 function renderIDP() {
   const container = document.getElementById('idpArea');
@@ -625,12 +612,6 @@ function renderIDP() {
       const cls = v >= 3.6 ? 'high' : (v >= 3.0 ? 'mid' : 'low');
       return '<span class="idp-q-chip">' + q + '<span class="idp-q-score ' + cls + '">' + v.toFixed(1) + '</span></span>';
     }).join('');
-
-    // Get representative feedback from 平级 and 下级
-    const peerFeedback = getQCommentsForEval(goal.related_questions[0], '平级');
-    const feedbackQuote = peerFeedback.length > 0
-      ? '<div class="idp-comment-quote"><span class="from">平级反馈:</span>' + escapeHtml(peerFeedback[0].text) + '</div>'
-      : '';
 
     return `
       <div class="idp-goal">
@@ -654,7 +635,6 @@ function renderIDP() {
           <strong>🔗 关联 360 评估问题 · 相关维度: ${escapeHtml(goal.related_dimension)}</strong>
           <div class="idp-q-map">${qChips}</div>
         </div>
-        ${feedbackQuote}
       </div>
     `;
   }).join('');
