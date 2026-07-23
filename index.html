@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jessie 360° 胜任力评估看板</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: linear-gradient(135deg, #4a6cf7 0%, #8e44ad 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.container {
+  max-width: 720px;
+  width: 100%;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  padding: 48px;
+}
+h1 {
+  font-size: 32px;
+  color: #2d3436;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.subtitle {
+  text-align: center;
+  color: #636e72;
+  font-size: 14px;
+  margin-bottom: 36px;
+}
+.version-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 24px;
+}
+.version-card {
+  display: block;
+  padding: 28px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+}
+.version-card.open {
+  background: #f0f4ff;
+  border-color: #4a6cf7;
+  color: #4a6cf7;
+}
+.version-card.anon {
+  background: #f8f9fb;
+  border-color: #636e72;
+  color: #636e72;
+}
+.version-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+.version-card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+.version-card p {
+  font-size: 13px;
+  color: inherit;
+  opacity: 0.7;
+}
+.arrow {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 20px;
+}
+@media (max-width: 600px) {
+  .version-grid { grid-template-columns: 1fr; }
+  .container { padding: 32px 24px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🎯 Jessie 360° 胜任力评估看板</h1>
+  <div class="subtitle">PVG GM — IDP 第二阶段 · 9 位评价者 · 24 项胜任力指标 · 7 维度</div>
+
+  <div class="version-grid">
+    <a href="360-dashboard-open.html" class="version-card open">
+      <h3>📋 开放版（实名）</h3>
+      <p>显示所有评价者真实姓名和评价人关系</p>
+      <span class="arrow">→</span>
+    </a>
+    <a href="360-dashboard-anon.html" class="version-card anon">
+      <h3>🔒 匿名版</h3>
+      <p>评价者以平01/下01 等匿名标识呈现</p>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+</div>
+</body>
+</html>
