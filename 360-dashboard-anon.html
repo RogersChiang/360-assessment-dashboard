@@ -288,9 +288,9 @@ tr:hover td{background:#f8f9fb}
 <section>
 <div class="sec-h"><div class="ic">💬</div><h2>开放性问题汇总</h2><div class="en">Open Responses</div></div>
 <div class="tab-nav">
-<button class="tab-btn active" onclick="switchTab('q25')">Q25 · 综合评价</button>
-<button class="tab-btn" onclick="switchTab('q26')">Q26 · 印象最深的管理决策</button>
-<button class="tab-btn" onclick="switchTab('q27')">Q27 · 建议获取的外部支持</button>
+<button class="tab-btn active" data-tab="q25" onclick="switchTab('q25')">Q25 · 综合评价</button>
+<button class="tab-btn" data-tab="q26" onclick="switchTab('q26')">Q26 · 印象最深的管理决策</button>
+<button class="tab-btn" data-tab="q27" onclick="switchTab('q27')">Q27 · 建议获取的外部支持</button>
 </div>
 <div id="tab-q25" class="tab-content"></div>
 <div id="tab-q26" class="tab-content" style="display:none"></div>
@@ -499,7 +499,14 @@ renderIDP();
 // ─── Open-ended ───
 function renderOpenQ(d, cid){ document.getElementById(cid).innerHTML = d.map(function(dd){ return '<div class="comment-box"><div class="author">'+escapeHtml(dd.author)+'</div><div class="content">'+escapeHtml(dd.text||'（未填写）')+'</div></div>'; }).join(''); }
 renderOpenQ(DATA.q25, 'tab-q25'); renderOpenQ(DATA.q26, 'tab-q26'); renderOpenQ(DATA.q27, 'tab-q27');
-function switchTab(t){ document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); }); document.querySelectorAll('.tab-content').forEach(function(c){ c.style.display='none'; }); document.querySelector('[onclick="switchTab(\\''+t+'\\')"]').classList.add('active'); document.getElementById('tab-'+t).style.display='block'; }
-</script>
+function switchTab(t){
+  var btns = document.querySelectorAll(".tab-btn");
+  for (var i = 0; i < btns.length; i++) { btns[i].classList.remove("active"); }
+  var panels = document.querySelectorAll(".tab-content");
+  for (var i = 0; i < panels.length; i++) { panels[i].style.display = "none"; }
+  var active = document.querySelector('[data-tab="' + t + '"]');
+  if (active) active.classList.add("active");
+  document.getElementById("tab-" + t).style.display = "block";
+}</script>
 </body>
 </html>
