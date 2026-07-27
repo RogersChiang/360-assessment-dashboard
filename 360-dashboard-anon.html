@@ -361,9 +361,9 @@ var kpiSubAvg = avg(EVALUATORS.filter((_,i)=>EVALUATORS[i].relation==='下级').
 var kpiPeerAvg = avg(EVALUATORS.filter((_,i)=>EVALUATORS[i].relation!=='下级').map((_,i)=>evalAvgs[i]));
 document.getElementById('kpi_all').textContent = allAvg.toFixed(2);
 document.getElementById('kpi_all_n').textContent = '满分 5.0 · ' + allValidScores.length + ' 条评分';
-document.getElementById('kpi_top_dim').textContent = sortedCats[0][0].substring(0,6);
+document.getElementById('kpi_top_dim').textContent = sortedCats[0][0];
 document.getElementById('kpi_top_val').textContent = sortedCats[0][1].toFixed(2);
-document.getElementById('kpi_bot_dim').textContent = sortedCats[sortedCats.length-1][0].substring(0,6);
+document.getElementById('kpi_bot_dim').textContent = sortedCats[sortedCats.length-1][0];
 document.getElementById('kpi_bot_val').textContent = sortedCats[sortedCats.length-1][1].toFixed(2);
 document.getElementById('kpi_subvpeer').textContent = (kpiSubAvg||0).toFixed(2) + ' / ' + (kpiPeerAvg||0).toFixed(2);
 document.getElementById('quadPos').textContent = '下级 ' + (kpiSubAvg||0).toFixed(2) + ' / 平级 ' + (kpiPeerAvg||0).toFixed(2);
