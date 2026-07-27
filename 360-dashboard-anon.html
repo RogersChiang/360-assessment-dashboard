@@ -503,14 +503,15 @@ function switchTab(t){
   document.getElementById("tab-" + t).style.display = "block";
 }
 // ─── Anon avg bar chart ───
+var avgLabels = Q_KEYS.map(function(q, i) { return Q_TITLES[q]; });
 new Chart(document.getElementById('avgBarChart'), {
   type: 'bar',
   data: {
-    labels: Q_KEYS.map(q => Q_TITLES[q]),
+    labels: avgLabels,
     datasets: [{
       label: '平均分',
-      data: Q_KEYS.map(q => qAvgs[q]),
-      backgroundColor: Q_KEYS.map(q => {
+      data: Q_KEYS.map(function(q) { return qAvgs[q]; }),
+      backgroundColor: Q_KEYS.map(function(q) {
         var v = qAvgs[q];
         if (v < 3.1) return 'rgba(224,49,49,0.7)';
         if (v < 3.5) return 'rgba(240,140,0,0.7)';
@@ -522,7 +523,7 @@ new Chart(document.getElementById('avgBarChart'), {
   options: {
     indexAxis: 'y', responsive: true, maintainAspectRatio: false,
     scales: { x: { min: 1, max: 5, ticks: { stepSize: 1 } }, y: { ticks: { font: { size: 11, weight: '600' } } } },
-    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => '平均分: ' + ctx.raw.toFixed(2) + ' · ' + Q_TO_DIM[ctx.label] } } }
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(ctx) { return '平均分: ' + ctx.raw.toFixed(2); } } } }
   }
 });
 </script>
