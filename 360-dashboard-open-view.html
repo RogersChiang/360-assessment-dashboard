@@ -442,7 +442,7 @@ new Chart(document.getElementById('radarChart'), {
 new Chart(document.getElementById('barChart'), {
   type: 'bar',
   data: {
-    labels: Q_KEYS.map(q => q),
+    labels: Q_KEYS.map(q => Q_TITLES[q]),
     datasets: [{
       label: '平均分', data: Q_KEYS.map(q => qAvgs[q]),
       backgroundColor: Q_KEYS.map(q => { var v = qAvgs[q]; return v < 3.1 ? 'rgba(224,49,49,0.7)' : v < 3.5 ? 'rgba(240,140,0,0.7)' : 'rgba(47,158,68,0.7)'; }),
