@@ -4,7 +4,42 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PVG GM Jessie · 360° 环评诊断看板</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js">
+// ─── Anon version: show avg chart, hide heatmap ───
+var IS_ANON = (DATA.evaluators[0].name && DATA.evaluators[0].name.indexOf('评价人') === 0);
+if (IS_ANON) {
+  var heatmapSection = document.getElementById('heatmapTitle');
+  if (heatmapSection && heatmapSection.parentElement && heatmapSection.parentElement.parentElement) {
+    heatmapSection.parentElement.parentElement.style.display = 'none';
+  }
+  var anonSection = document.getElementById('anonAvgChart');
+  if (anonSection) {
+    anonSection.style.display = '';
+    new Chart(document.getElementById('avgBarChart'), {
+      type: 'bar',
+      data: {
+        labels: Q_KEYS.map(q => q),
+        datasets: [{
+          label: '平均分',
+          data: Q_KEYS.map(q => qAvgs[q]),
+          backgroundColor: Q_KEYS.map(q => {
+            var v = qAvgs[q];
+            if (v < 3.1) return 'rgba(224,49,49,0.7)';
+            if (v < 3.5) return 'rgba(240,140,0,0.7)';
+            return 'rgba(47,158,68,0.7)';
+          }),
+          borderRadius: 4
+        }]
+      },
+      options: {
+        indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+        scales: { x: { min: 1, max: 5, ticks: { stepSize: 1 } }, y: { ticks: { font: { size: 11, weight: '600' } } } },
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => '平均分: ' + ctx.raw.toFixed(2) + ' · ' + Q_TO_DIM[ctx.label] } } }
+      }
+    });
+  }
+}
+</script>
 <style>
 :root{
   --bg:#f4f6fb; --card:#ffffff; --ink:#1f2733; --ink2:#5b6675; --line:#e6eaf2;
@@ -285,8 +320,13 @@ tr:hover td{background:#f8f9fb}
 
 
 <!-- 7. Heatmap -->
+
+<section id="anonAvgChart" style="display:none;">
+<div class="sec-h"><div class="ic">📊</div><h2>各项胜任力平均分</h2><div class="en">Average Scores</div></div>
+<div class="chart-wrap tall"><div class="canvas-wrap"><canvas id="avgBarChart"></canvas></div></div>
+</section>
 <section>
-<div class="sec-h"><div class="ic">🔥</div><h2>评价者 × 题目得分矩阵</h2><div class="en">Score Heatmap</div></div>
+<div class="sec-h"><div class="ic">🔥</div><h2 id="heatmapTitle">评价者 × 题目得分矩阵</h2><div class="en">Score Heatmap</div></div>
 <div class="note">题目悬浮可看全文 · 带 💬 标记的格子有备注</div>
 <div style="overflow-x:auto"><table id="heatmap"></table></div>
 </section>
@@ -303,6 +343,28 @@ tr:hover td{background:#f8f9fb}
 <div id="tab-q25" class="tab-content"></div>
 <div id="tab-q26" class="tab-content" style="display:none"></div>
 <div id="tab-q27" class="tab-content" style="display:none"></div>
+</section>
+
+
+
+<section>
+<div class="sec-h"><div class="ic">📝</div><h2>综合评价总结</h2><div class="en">Overall Summary</div></div>
+<div class="reli-grid">
+<div class="rcard">
+<h4>核心结论</h4>
+<p>本次 360 评估覆盖 24 项胜任力指标，由 10 位评价者（8 平级 + 2 下级）参与。综合平均分 <b style="color:var(--brand)">3.32</b>，处于合格水平。</p>
+<p>• <b>优势维度：</b>合规意识与风险管控、目标与过程管理<br>
+• <b>短板维度：</b>跨部门协作与外部网络<br>
+• <b>最大分歧项：</b>Q22（关键岗位赋能考核），评价两极</p>
+</div>
+<div class="rcard">
+<h4>发展建议方向</h4>
+<p>基于本轮评估反馈，候选人下一阶段建议聚焦：</p>
+<p>① 修复中台信任，建立常态化信息同步机制<br>
+② 完成从 HR sense 到管理实践 sense 的转型<br>
+③ 减少决策反复，重大方案制定预案 Plan B</p>
+</div>
+</div>
 </section>
 
 <footer>
