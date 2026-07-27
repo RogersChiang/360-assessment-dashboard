@@ -490,6 +490,7 @@ renderHeatmap();
 
 
 // ─── Open-ended ───
+function escapeHtml(s){ if(!s)return""; return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
 function renderOpenQ(d, cid){ document.getElementById(cid).innerHTML = d.map(function(dd){ return '<div class="comment-box"><div class="author">'+escapeHtml(dd.author)+'</div><div class="content">'+escapeHtml(dd.text||'（未填写）')+'</div></div>'; }).join(''); }
 renderOpenQ(DATA.q25, 'tab-q25'); renderOpenQ(DATA.q26, 'tab-q26'); renderOpenQ(DATA.q27, 'tab-q27');
 function switchTab(t){
