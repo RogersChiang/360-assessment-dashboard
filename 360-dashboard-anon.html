@@ -495,6 +495,16 @@ function renderOpenQ(data, cid){
   var container = document.getElementById(cid);
   container.innerHTML = '<div class="comment-box"><div class="content">' + data.map(function(d){ return escapeHtml(d.text || ''); }).filter(function(t){ return t.length > 0 && t !== '（未填写）' && t !== '/'; }).map(function(t){ return '<div style="border-bottom:1px solid #e6eaf2;padding:8px 0;">' + t + '</div>'; }).join('') + '</div></div>';
 }
+renderOpenQ(DATA.q25, 'tab-q25'); renderOpenQ(DATA.q26, 'tab-q26'); renderOpenQ(DATA.q27, 'tab-q27');
+function switchTab(t){
+  var btns = document.querySelectorAll(".tab-btn");
+  for (var i = 0; i < btns.length; i++) { btns[i].classList.remove("active"); }
+  var panels = document.querySelectorAll(".tab-content");
+  for (var i = 0; i < panels.length; i++) { panels[i].style.display = "none"; }
+  var active = document.querySelector('[data-tab="' + t + '"]');
+  if (active) active.classList.add("active");
+  document.getElementById("tab-" + t).style.display = "block";
+}
 // ─── Anon avg bar chart ───
 var avgLabels = Q_KEYS.map(function(q, i) { return Q_TITLES[q]; });
 new Chart(document.getElementById('avgBarChart'), {
