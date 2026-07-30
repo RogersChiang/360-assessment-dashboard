@@ -181,7 +181,7 @@ tr:hover td{background:#f8f9fb}
 <div class="kpi"><div class="l"><span class="dot brand"></span>最高维度</div><div class="v" style="color:var(--good)" id="kpi_top_dim">-</div><div class="d" id="kpi_top_val"></div></div>
 <div class="kpi warn"><div class="l"><span class="dot bad"></span>最低维度</div><div class="v" style="color:var(--bad)" id="kpi_bot_dim">-</div><div class="d" id="kpi_bot_val"></div></div>
 <div class="kpi"><div class="l"><span class="dot brand"></span>下级 vs 平级</div><div class="v" style="font-size:24px" id="kpi_subvpeer">-</div><div class="d">约 0.8 分差</div></div>
-<div class="kpi warn"><div class="l"><span class="dot bad"></span>最大分歧项</div><div class="v" style="color:var(--bad)" id="kpi_div">Q1</div><div class="d">SD=0.80</div></div>
+<div class="kpi warn"><div class="l"><span class="dot bad"></span>最大分歧项</div><div class="v" style="color:var(--bad)" id="kpi_div">Q1</div><div class="d">SD=1.08</div></div>
 </div>
 
 <!-- 1. Dimension Overview -->
@@ -201,71 +201,40 @@ tr:hover td{background:#f8f9fb}
 
 <!-- 3. Risk Analysis -->
 <section>
-<div class="sec-h"><div class="ic">🚧</div><h2>协作卡点 · 跨部门协作卡点</h2><div class="en">Collaboration Bottlenecks</div></div>
+<div class="sec-h"><div class="ic">🚧</div><h2>协作卡点</h2><div class="en">Collaboration Bottlenecks</div></div>
 <div class="risk">
-<div class="rc"><div class="t">卡点 1 · 中后台信息同步</div><div class="lv">严重</div>
-<p>Q4 中后台信息同步均分偏低，下级与平级存在显著认知差（>0.5 阈值）→ 协同障碍成立。把中台当"监督者"而非"赋能方"，存在信息壁垒。</p>
-<div class="quote">"6.12 未清关直接放货，中台发现后前台第一反应是'中台怎么知道的'。"</div></div>
-<div class="rc amber"><div class="t">卡点 2 · HR 思维惯性</div><div class="lv">中</div>
-<p>Q12 均分全场最低（2.50），精力过度投入 HR 事务，把考勤当重要考核指标，偏离 GM 经营视角，在用人识人上尚未完成从 HR sense 到管理实践 sense 的转型。</p>
-<div class="quote">"用人上会参与很多 HR 该做的事，精力可更多放业务。"</div></div>
-<div class="rc amber"><div class="t">卡点 3 · 决策反复缺预案</div><div class="lv">中</div>
-<p>Q20/Q24 环节存在"业务决策变快但有反复""前期未制定处置预案，导致其他团队原计划被打乱"，消耗平级信任。</p>
-<div class="quote">"方案在拉通阶段尚未成熟……导致其他团队原计划被打乱。"——评价人1</div></div>
-</div>
-</section>
+<div class="rc"><div class="t">卡点 1 · Q11 能完成关键岗位人才盘点与梯队建设，做好关键人才培养</div><div class="lv">需关注</div><p>均分 3.0（平级），4 位有效评价者。该能力在工作中尚未稳定展现，建议制定专项提升计划。</p></div>
+<div class="rc amber"><div class="t">卡点 2 · Q7 能定期共享市场、政策及业务信息，促进组织协同与资源整合</div><div class="lv">中</div><p>均分 3.2（平级），8 位有效评价者。能力基本展现但频次和深度不足，尚未形成常态化行为模式。</p></div>
+<div class="rc amber"><div class="t">卡点 3 · Q6 能有效推动跨部门协同问题解决，形成可落地的改善方案</div><div class="lv">中</div><p>均分 3.3（平级），9 位有效评价者。该维度为 GM 核心能力，当前得分偏低，建议结合上级辅导进行定向突破。</p></div>
+</div></section>
 
 <section>
 <div class="sec-h"><div class="ic">⚠️</div><h2>评价风险点</h2><div class="en">Evaluation Risks</div></div>
-<div class="note" style="margin-bottom:14px">⚠️ 数据可信度：部分下级评价人给出"全场最高分"或"全相同"等明显倾向（缺乏区分度），建议结合平级多评价者交叉验证后使用</div>
+<div class="note" style="margin-bottom:14px">⚠️ 数据可信度：部分评价人未参与评分或选择"无法判断"，建议结合多评价者交叉验证后使用</div>
 <div class="risk">
-<div class="rc"><div class="t">风险 1 · 数据可信度</div><div class="lv">TOP 1</div>
-<p>部分下级评价人给出"全场最高分"或"全相同"等明显倾向（缺乏区分度），结合平级多评价者交叉验证，综合评价结论更为可信。</p></div>
-<div class="rc amber"><div class="t">风险 2 · 关怀双标</div><div class="lv">TOP 2</div>
-<p>对直属核心下级关怀充分，但对外围下属（支援人员、华人员工）存在双重标准——比经典"伪高管"更隐蔽的凝聚力风险。</p>
-<div class="quote">"对前往支援的运营，也不向当地团队介绍，以命令式口吻安排工作。"</div></div>
-<div class="rc amber"><div class="t">风险 3 · 团队管理风格</div><div class="lv">TOP 3</div>
-<p>评价人7 反馈"团队管理上风格偶尔阴晴不定"，将考勤作为重要考核指标，对本地人和华人存在双重标准。</p>
-<div class="quote">"仍会带入HR思维进行员工管理，在团队管理上反而把考勤作为一个重要考核指标。"——Mathias XU</div></div>
-</div>
-</section>
+<div class="rc"><div class="t">风险 1 · 评价覆盖率不均</div><div class="lv">TOP 1</div><p>部分评价人在多个题目上选择"无法判断"（—），尤其评价人3、评价人7在团队管理等维度覆盖率较低，需关注评价数据完整性。</p></div>
+<div class="rc amber"><div class="t">风险 2 · 平级评分分化</div><div class="lv">TOP 2</div><p>同级评价者之间评分差异较大（如 评价人5 4.66 vs 评价人4 2.67），反映不同职能方向对该候选人的评价标准不统一。</p></div>
+<div class="rc amber"><div class="t">风险 3 · 样本量不足</div><div class="lv">TOP 3</div><p>下级评价者仅 2 人，且部分题目评分主观性较强，团队管理维度下级均分甚至低于平级，需结合更多数据源验证。</p></div>
+</div></section>
 
 <section>
 <div class="sec-h"><div class="ic">⭐</div><h2>优势与亮点</h2><div class="en">Strengths & Highlights</div></div>
 <div class="risk">
-<div class="rc" style="border-left:4px solid #2f9e44">
-<div class="t" style="color:#2f9e44">亮点 1 · 合规与风险意识强</div><div class="lv" style="background:#2f9e44">STRONG</div>
-<p>合规维度 3.53 分（7 维度中最高），本地用工、海关法规、客户资料合规排查均表现优良；评价人反馈"用工严格，合法合规"。</p>
-</div>
-<div class="rc" style="border-left:4px solid #2f9e44">
-<div class="t" style="color:#2f9e44">亮点 2 · 业务理解与决策能力</div><div class="lv" style="background:#2f9e44">STRONG</div>
-<p>下级评价反馈"对业务理解到位，对库内帮助和建议专业有效"；面对税改爆仓情境，能在 1-2 周内做出 B2B 分流的多套方案，缓解大面积拥堵。</p>
-</div>
-<div class="rc" style="border-left:4px solid #2f9e44">
-<div class="t" style="color:#2f9e44">亮点 3 · 敢于授权与目标拆解</div><div class="lv" style="background:#2f9e44">STRONG</div>
-<p>Q9（敢于授权）均分 3.71，"结合成员优势合理派活，同时具备人员替换的风险预案"；基于公司目标分解到各部门、设立团队 KPI、按月 review。</p>
-</div>
-</div>
-</section>
+<div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">亮点 1 · Q14 能推动清关、商检及客户资料合规审查，提前规避风险</div><div class="lv" style="background:#2f9e44">STRONG</div><p>均分 4.5（平级），6 位有效评价者。该维度表现突出，在合规与系统思考方面获得评价者一致认可。</p></div>
+<div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">亮点 2 · Q21 能制定清晰的团队目标与OKR，并定期复盘达成情况</div><div class="lv" style="background:#2f9e44">STRONG</div><p>均分 4.2（平级），6 位有效评价者。展现出较强的全局思维和资源配置意识。</p></div>
+<div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">亮点 3 · Q9 敢于授权并推动团队承担责任，关键工作授权覆盖率高</div><div class="lv" style="background:#2f9e44">STRONG</div><p>均分 4.2（平级），6 位有效评价者。在目标制定、过程跟进方面表现稳定，下属反馈良好。</p></div>
+</div></section>
 
 <!-- 4. Text Mining -->
 <section>
 <div class="sec-h"><div class="ic">🔍</div><h2>关键文本挖掘</h2><div class="en">Text Mining</div></div>
-<div class="tags">
-<span class="atag">封闭 / 信息不透明</span>
-<span class="atag em">情绪化 / 阴晴不定</span>
-<span class="atag em">双重标准</span>
-<span class="atag">HR 思维惯性</span>
-<span class="atag em">事后响应 / 缺预案</span>
-</div>
+<div class="tags"><span class="atag">业务理解能力</span><span class="atag em">跨部门协同</span><span class="atag em">合规意识</span><span class="atag">系统思维</span><span class="atag em">目标管理</span></div>
 <div class="taglist">
-<div class="tl"><div class="h">封闭 / 信息不透明<span>多位评价者</span></div><div class="q">"PVG 内部要求是：能不跟中台讲的事情都不要讲"</div></div>
-<div class="tl"><div class="h">情绪化 / 阴晴不定<span>多位评价者</span></div><div class="q">"发小女生脾气""耍大牌摆架子""偶尔会被情绪左右"</div></div>
-<div class="tl"><div class="h">双重标准<span>多位评价者</span></div><div class="q">"对华人的要求高出一截""不能公平看待合作人员"</div></div>
-<div class="tl"><div class="h">事后响应 / 缺预案<span>多位评价者</span></div><div class="q">"多为事后响应，缺少前置监测""未制定预案打乱他人计划"</div></div>
-</div>
-<div class="note" style="margin-top:12px">未检出"压榨、甩锅"类词汇；核心负面语义簇为 <b>封闭、情绪化、双标</b>。</div>
-</section>
+<div class="tl"><div class="h">业务理解与经营导向<span>多位评价者</span></div><div class="q">开放问题中多位评价者提及候选人对北美业务指标的关注和推动。</div></div>
+<div class="tl"><div class="h">跨部门协同与资源整合<span>多位评价者</span></div><div class="q">部分评价者反馈"与国内中台的信息沟通需要加强"。需进一步打通前中后台信息壁垒。</div></div>
+<div class="tl"><div class="h">合规与风险意识<span>多位评价者</span></div><div class="q">清关资质落地后快速确定结算路径，表现出较强的合规意识。</div></div>
+<div class="tl"><div class="h">改善与优化意识<span>多位评价者</span></div><div class="q">有评价者提到"卡车货物被盗后第一时间响应，但后续改善措施未见落地"。</div></div>
+</div></section>
 
 <!-- 5. Quadrant -->
 <section>
@@ -274,9 +243,9 @@ tr:hover td{background:#f8f9fb}
 <div id="quadChart"></div>
 <div>
 <div class="qcard" style="border-color:#ffc9c9;background:#fff5f5">
-<h4>📍 当前定位：堡垒型口岸管理者</h4>
+<h4>📍 当前定位：高速发展型管理者</h4>
 <div class="pos" id="quadPos">-</div>
-<p>偏袒内圈、缺乏大局观的风险型定位。低分集中于"信息开放度"单一断面，修复杠杆明确。真实画像介于"内部人气王"与"待改善"之间。</p>
+<p>业务专业能力突出，团队均衡性需提升。低分集中于"结果导向与持续改善"单一断面，修复杠杆明确。真实画像介于"内部人气王"与"待改善"之间。</p>
 </div>
 <div class="qcard" style="margin-top:12px"><h4>💡 人才决策</h4>
 <p><b style="color:var(--good)">保留 + 定向发展（Develop in place）</b>。新任 GM 爬坡期，业务潜力被认可；若 6–12 个月内"封闭对抗中台"无改善，再重新评估。</p></div>
@@ -310,22 +279,9 @@ tr:hover td{background:#f8f9fb}
 <section>
 <div class="sec-h"><div class="ic">📝</div><h2>综合评价总结</h2><div class="en">Overall Summary</div></div>
 <div class="reli-grid">
-<div class="rcard">
-<h4>核心结论</h4>
-<p>本次 360 评估覆盖 24 项胜任力指标，由 10 位评价者（8 平级 + 2 下级）参与。综合平均分 <b style="color:var(--brand)">3.32</b>，处于合格水平。</p>
-<p>• <b>优势维度：</b>合规意识与风险管控、目标与过程管理<br>
-• <b>短板维度：</b>跨部门协作与外部网络<br>
-• <b>最大分歧项：</b>Q22（关键岗位赋能考核），评价两极</p>
-</div>
-<div class="rcard">
-<h4>发展建议方向</h4>
-<p>基于本轮评估反馈，候选人下一阶段建议聚焦：</p>
-<p>① 修复中台信任，建立常态化信息同步机制<br>
-② 完成从 HR sense 到管理实践 sense 的转型<br>
-③ 减少决策反复，重大方案制定预案 Plan B</p>
-</div>
-</div>
-</section>
+<div class="rcard"><h4>核心结论</h4><p>本次 360 评估覆盖 24 项胜任力指标，由 9 位评价者（7 平级 + 2 下级）参与。综合加权均分 <b style="color:var(--brand)">3.88</b>。</p><p>• <b>优势维度：</b>合规意识与风险管控、系统思考与全局观<br>• <b>短板维度：</b>结果导向与经营能力、持续改善与问题解决<br>• <b>评价差异：</b>平级间评分差异较大（2.67–4.66），中台与业务线关注点不同</p></div>
+<div class="rcard"><h4>发展建议方向</h4><p>基于本轮评估反馈，候选人下一阶段建议聚焦：</p><p>① 强化结果导向意识，将经营指标纳入日常管理节奏<br>② 提升持续改善闭环能力，从"发现问题"到"落地解决"形成全链路<br>③ 加强与中台信息共享机制，缩小跨部门信息不对称</p></div>
+</div></section>
 
 <footer>
 数据来源：360 胜任力评估问卷 ｜ 本看板基于 9 份问卷的评分与开放文本生成<br>
@@ -501,31 +457,18 @@ function switchTab(t){
   var active = document.querySelector('[data-tab="' + t + '"]');
   if (active) active.classList.add("active");
   document.getElementById("tab-" + t).style.display = "block";
-}
-// ─── Anon avg bar chart ───
-var avgLabels = Q_KEYS.map(function(q, i) { return Q_TITLES[q]; });
+}var avgLabels = Q_KEYS.map(function(q, i) { return Q_TITLES[q]; });
 new Chart(document.getElementById('avgBarChart'), {
   type: 'bar',
   data: {
     labels: avgLabels,
-    datasets: [{
-      label: '平均分',
-      data: Q_KEYS.map(function(q) { return qAvgs[q]; }),
-      backgroundColor: Q_KEYS.map(function(q) {
-        var v = qAvgs[q];
-        if (v < 3.1) return 'rgba(224,49,49,0.7)';
-        if (v < 3.5) return 'rgba(240,140,0,0.7)';
-        return 'rgba(47,158,68,0.7)';
-      }),
-      borderRadius: 4
-    }]
+    datasets: [{label: '平均分', data: Q_KEYS.map(function(q) { return qAvgs[q]; }),
+      backgroundColor: Q_KEYS.map(function(q) { var v = qAvgs[q]; if (v < 3.1) return 'rgba(224,49,49,0.7)'; if (v < 3.5) return 'rgba(240,140,0,0.7)'; return 'rgba(47,158,68,0.7)'; }),
+      borderRadius: 4}]
   },
-  options: {
-    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+  options: {indexAxis: 'y', responsive: true, maintainAspectRatio: false,
     scales: { x: { min: 1, max: 5, ticks: { stepSize: 1 } }, y: { ticks: { font: { size: 11, weight: '600' } } } },
-    plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(ctx) { return '平均分: ' + ctx.raw.toFixed(2); } } } }
-  }
-});
-</script>
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(ctx) { return '平均分: ' + ctx.raw.toFixed(2); } } } } }
+});</script>
 </body>
 </html>
