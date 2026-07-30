@@ -168,7 +168,7 @@ tr:hover td{background:#f8f9fb}
 <div style="display:flex;gap:10px">
 <div class="pill">有效平级<b>3</b></div>
 <div class="pill">有效下级<b>2</b></div>
-<div class="pill">平级均分<b>3.00</b></div>
+<div class="pill">平级均分<b>3.31</b></div>
 </div>
 </div>
 </header>
@@ -181,7 +181,7 @@ tr:hover td{background:#f8f9fb}
 <div class="kpi"><div class="l"><span class="dot brand"></span>最高维度</div><div class="v" style="color:var(--good)" id="kpi_top_dim">-</div><div class="d" id="kpi_top_val"></div></div>
 <div class="kpi warn"><div class="l"><span class="dot bad"></span>最低维度</div><div class="v" style="color:var(--bad)" id="kpi_bot_dim">-</div><div class="d" id="kpi_bot_val"></div></div>
 <div class="kpi"><div class="l"><span class="dot brand"></span>下级 vs 平级</div><div class="v" style="font-size:24px" id="kpi_subvpeer">-</div><div class="d">约 0.8 分差</div></div>
-<div class="kpi warn"><div class="l"><span class="dot bad"></span>最大分歧项</div><div class="v" style="color:var(--bad)" id="kpi_div">Q2</div><div class="d">SD=1.0</div></div>
+<div class="kpi warn"><div class="l"><span class="dot bad"></span>最大分歧项</div><div class="v" style="color:var(--bad)" id="kpi_div">Q3</div><div class="d">SD=1.34</div></div>
 </div>
 
 <!-- 1. Dimension Overview -->
@@ -201,22 +201,57 @@ tr:hover td{background:#f8f9fb}
 
 <!-- 3. Risk Analysis -->
 <section><div class="sec-h"><div class="ic">🚧</div><h2>待提升能力</h2><div class="en">Development Areas</div></div>
-<div class="risk"><div class="rc"><div class="t">Q5 执行与反馈 / Execution & Follo</div><div class="lv">需关注</div><p>均分 2.7，5 位有效评价者。</p></div>
-<div class="rc amber"><div class="t">Q8 正向面对矛盾 / Constructively A</div><div class="lv">中</div><p>均分 2.7，5 位有效评价者。</p></div>
-<div class="rc amber"><div class="t">Q11 识人预判 / Assessing Strength</div><div class="lv">中</div><p>均分 2.7，5 位有效评价者。</p></div></div></section>
+<div class="risk">
+<div class="rc"><div class="t">卡点 1 · Q5 执行与反馈 / Execution & Follo</div><div class="lv">需关注</div>
+<p>均分 3.20，5 位有效评价者。该项能力尚未稳定展现，建议制定专项提升计划。</p></div>
+<div class="rc amber"><div class="t">卡点 2 · Q10 集中意见 / Consolidating Pers</div><div class="lv">中</div>
+<p>均分 3.20，5 位有效评价者。基本展现但频次/深度不足。</p></div>
+<div class="rc amber"><div class="t">卡点 3 · Q11 识人预判 / Assessing Strength</div><div class="lv">中</div>
+<p>均分 3.20，5 位有效评价者。能力基本合格但稳定性欠佳。</p></div>
+</div></section>
 
-
+<section><div class="sec-h"><div class="ic">⚠️</div><h2>评价风险点</h2><div class="en">Evaluation Risks</div></div>
+<div class="note" style="margin-bottom:14px">⚠️ 数据可信度：本评估样本量较小（5 位评价者），建议结合多源数据交叉验证后使用</div>
+<div class="risk">
+<div class="rc"><div class="t">风险 1 · 评价样本量有限</div><div class="lv">TOP 1</div><p>仅 5 位评价者（1 上级 + 2 平级 + 2 下级），单一评价者对结果影响较大。建议补充更多评价者。</p></div>
+<div class="rc amber"><div class="t">风险 2 · 上级评价偏低</div><div class="lv">TOP 2</div><p>上级评分明显低于其他评价者（部分项仅 1-2 分），需关注是否存在评价偏差或真实能力差距。</p></div>
+<div class="rc amber"><div class="t">风险 3 · 软技能短板</div><div class="lv">TOP 3</div><p>在人员识别、情绪管理等软技能方面评分较低，需上级重点辅导。</p></div>
+</div></section>
 
 <section><div class="sec-h"><div class="ic">⭐</div><h2>优势与亮点</h2><div class="en">Strengths</div></div>
-<div class="risk"><div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">Q19 严格执行 / Strict Execution</div><div class="lv" style="background:#2f9e44">STRONG</div><p>均分 4.0，5 位有效评价者。</p></div>
-<div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">Q22 快速行动 / Swift Action</div><div class="lv" style="background:#2f9e44">STRONG</div><p>均分 4.0，5 位有效评价者。</p></div>
-<div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">Q7 积极作出贡献 / Making Positive </div><div class="lv" style="background:#2f9e44">STRONG</div><p>均分 3.7，5 位有效评价者。</p></div></div></section>
+<div class="risk">
+<div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">亮点 1 · Q7 积极作出贡献 / Making Positive </div><div class="lv" style="background:#2f9e44">STRONG</div>
+<p>均分 4.20，5 位有效评价者。表现突出，多位评价者给予高分认可。</p></div>
+<div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">亮点 2 · Q16 提高标准 / Raising Standards</div><div class="lv" style="background:#2f9e44">STRONG</div>
+<p>均分 4.00，5 位有效评价者。表现稳定，行为频次较高。</p></div>
+<div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">亮点 3 · Q19 严格执行 / Strict Execution</div><div class="lv" style="background:#2f9e44">STRONG</div>
+<p>均分 4.00，5 位有效评价者。在该维度形成稳定的高频展现。</p></div>
+</div></section>
 
 <!-- 4. Text Mining -->
-
+<section><div class="sec-h"><div class="ic">🔍</div><h2>关键文本挖掘</h2><div class="en">Text Mining</div></div>
+<div class="tags"><span class="atag">情绪稳定性</span><span class="atag em">沟通能力</span><span class="atag">工作轻重</span><span class="atag em">对客态度</span><span class="atag">团队协作</span></div>
+<div class="taglist">
+<div class="tl"><div class="h">情绪稳定性<span>多位评价者</span></div><div class="q">"情绪要稳定... 考虑问题做出判断首先要基于事实不是主观认知地先判断"</div></div>
+<div class="tl"><div class="h">对上对下沟通<span>多位评价者</span></div><div class="q">"对上对下沟通能力"为高频反馈项，建议加强沟通技巧培训</div></div>
+<div class="tl"><div class="h">工作轻重优先级<span>多位评价者</span></div><div class="q">"工作轻重"是核心待提升项，建议建立优先级管理框架</div></div>
+<div class="tl"><div class="h">人员管理软技能<span>多位评价者</span></div><div class="q">"People skills need to be developed" - 平级反馈</div></div>
+</div></section>
 
 <!-- 5. Quadrant -->
-
+<section><div class="sec-h"><div class="ic">🧩</div><h2>综合评价矩阵</h2><div class="en">Quadrant Positioning</div></div>
+<div class="quad-wrap">
+<div id="quadChart"></div>
+<div>
+<div class="qcard" style="border-color:#ffd8a8;background:#fffaf2">
+<h4>📍 当前定位：成长型执行者</h4>
+<div class="pos" id="quadPos">-</div>
+<p>下级评分高于平级评分，团队协作较好但跨部门影响力需提升。低分项集中于人员管理与情绪稳定。</p>
+</div>
+<div class="qcard" style="margin-top:12px"><h4>💡 人才决策</h4>
+<p><b style="color:var(--good)">保留 + 定向培养（Develop in place）</b>。执行能力扎实，下属反馈良好；需在管理软技能和沟通上重点提升。</p></div>
+</div>
+</div></section>
 
 
 <!-- 7. Heatmap -->
@@ -242,8 +277,10 @@ tr:hover td{background:#f8f9fb}
 
 
 <section><div class="sec-h"><div class="ic">📝</div><h2>综合评价总结</h2><div class="en">Overall Summary</div></div>
-<div class="reli-grid"><div class="rcard"><h4>评估概况</h4><p>本次 360 评估覆盖 25 项胜任力指标，5 维度，5 位评价者（1 上级 + 2 平级 + 2 下级）。</p><p>• <b>优势：</b>高标准执行、执行与跟进<br>• <b>待发展：</b>情绪管理、沟通与协作</p></div>
-<div class="rcard"><h4>发展建议</h4><p>① 提升情绪稳定性，基于事实而非主观判断做决策<br>② 加强对上对下沟通能力<br>③ 拓展人员管理软技能</p></div></div></section>
+<div class="reli-grid">
+<div class="rcard"><h4>核心结论</h4><p>本次 360 评估覆盖 25 项胜任力指标，5 维度，5 位评价者。综合均分 <b style="color:var(--brand)">3.66</b>。</p><p>• <b>优势维度：</b>目标与过程管理<br>• <b>短板维度：</b>识人用人与团队管理<br>• <b>最大分歧项：</b>Q3 (SD=1.34)</p></div>
+<div class="rcard"><h4>发展建议</h4><p>① 提升情绪稳定性，基于事实而非主观判断做决策<br>② 加强对上对下沟通能力<br>③ 拓展人员管理软技能<br>④ 建立工作优先级管理框架</p></div>
+</div></section>
 
 <footer>
 数据来源：360 胜任力评估问卷 ｜ 本看板基于 5 份问卷的评分与开放文本生成<br>
@@ -370,7 +407,7 @@ new Chart(document.getElementById('barChart'), {
 
 // ─── Quadrant ───
 (function(){
-  var W = 420, H = 380, pad = 46, max = 5, min = 0;
+  var W = 420, H = 380, pad = 46, max = 5, min = 0; var xPeer=3.3066666666666666, ySub=4.2;
   var px = (kpiPeerAvg||3) / 5 * (W-2*pad) + pad;
   var py = H - pad - ((kpiSubAvg||4) / 5 * (H-2*pad));
   var cx = 3.5/5*(W-2*pad)+pad, cy = H-pad-3.5/5*(H-2*pad);
