@@ -446,7 +446,8 @@ function hideTip() { tooltip.classList.remove('show'); }
 function escapeHtml(s){ if(!s)return""; return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
 function renderOpenQ(data, cid){
   var container = document.getElementById(cid);
-  container.innerHTML = '<div class="comment-box"><div class="content">' + data.map(function(d){ return escapeHtml(d.text || ''); }).filter(function(t){ return t.length > 0 && t !== '（未填写）' && t !== '/'; }).map(function(t){ return '<div style="border-bottom:1px solid #e6eaf2;padding:8px 0;">' + t + '</div>'; }).join('') + '</div></div>';
+  var texts = data.map(function(d){ return escapeHtml(d.text || ''); }).filter(function(t){ return t.length > 0 && t !== '（未填写）' && t !== '/'; });
+        container.innerHTML = texts.length > 0 ? '<div class="comment-box"><div class="content">' + texts.map(function(t){ return '<div style="border-bottom:1px solid #e6eaf2;padding:8px 0;">' + t + '</div>'; }).join('') + '</div></div>' : '<div class="comment-box"><div class="content" style="color:#888;text-align:center;padding:20px 0;">暂无评价内容</div></div>';
 }
 renderOpenQ(DATA.q25, 'tab-q25'); renderOpenQ(DATA.q26, 'tab-q26'); renderOpenQ(DATA.q27, 'tab-q27');
 function switchTab(t){
