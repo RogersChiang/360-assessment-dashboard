@@ -161,14 +161,14 @@ tr:hover td{background:#f8f9fb}
 <div class="wrap">
 <div>
 <h1>🎯 Kaixin Zhao · 360° 环评诊断看板 <span style="font-size:14px;font-weight:400;opacity:.8;">开放版（实名·基层干部）</span></h1>
-<div class="sub">IDP 第二阶段 胜任力评估 ｜ 分析范围 Q1–Q24 评分 + Q25–Q27 开放题 ｜ 5 位评价者（3 平级 + 2 下级）</div>
+<div class="sub">IDP 第二阶段 胜任力评估 ｜ 分析范围 Q1–Q24 评分 + Q25–Q27 开放题 ｜ 5 位评价者（2 平级 + 2 下级）</div>
 <span class="tag">被评估人：Kaixin Zhao（PVG 总经理）</span>
 <span class="tag">7 维度 · 24 项胜任力指标</span>
 </div>
 <div style="display:flex;gap:10px">
-<div class="pill">有效平级<b>3</b></div>
+<div class="pill">有效平级<b>2</b></div>
 <div class="pill">有效下级<b>2</b></div>
-<div class="pill">平级均分<b>3.31</b></div>
+<div class="pill">平级均分<b>3.60</b></div>
 </div>
 </div>
 </header>
@@ -187,9 +187,7 @@ tr:hover td{background:#f8f9fb}
 <!-- 1. Dimension Overview -->
 <section>
 <div class="sec-h"><div class="ic">📊</div><h2>维度对比分析（平级 vs 下级）</h2><div class="en">Dimension Comparison</div></div>
-<div class="chart-row">
-<div>
-<div class="legend"><span><i style="background:#4263eb"></i>平级均分</span><span><i style="background:#e8590c"></i>下级均分</span><span style="color:#adb5bd;font-size:11px">（5 分制）</span></div>
+<div class="chart-row"><div><div class="legend"><span><i style="background:#3b5bdb"></i>上级</span><span><i style="background:#4263eb"></i>平级</span><span><i style="background:#e8590c"></i>下级</span><span style="color:#adb5bd;font-size:11px">(5 分制)</span></div><div id="dimBars" data-mode="super"></div></div><div style="display:flex;align-items:center;justify-content:center"><div id="radarWrap" style="width:100%;max-width:360px"><canvas id="radarChart"></canvas></div></div></div>
 <div id="dimBars"></div>
 </div>
 <div style="display:flex;align-items:center;justify-content:center">
@@ -200,58 +198,53 @@ tr:hover td{background:#f8f9fb}
 
 
 <!-- 3. Risk Analysis -->
-<section><div class="sec-h"><div class="ic">🚧</div><h2>待提升能力</h2><div class="en">Development Areas</div></div>
-<div class="risk">
-<div class="rc"><div class="t">卡点 1 · Q5 执行与反馈 / Execution & Follo</div><div class="lv">需关注</div>
-<p>均分 3.20，5 位有效评价者。该项能力尚未稳定展现，建议制定专项提升计划。</p></div>
-<div class="rc amber"><div class="t">卡点 2 · Q10 集中意见 / Consolidating Pers</div><div class="lv">中</div>
-<p>均分 3.20，5 位有效评价者。基本展现但频次/深度不足。</p></div>
-<div class="rc amber"><div class="t">卡点 3 · Q11 识人预判 / Assessing Strength</div><div class="lv">中</div>
-<p>均分 3.20，5 位有效评价者。能力基本合格但稳定性欠佳。</p></div>
-</div></section>
+<section><div class="sec-h"><div class="ic">🚧</div><h2>待提升能力</h2><div class="en">Development Areas</div></div><div class="risk"><div class="rc"><div class="t">卡点 1 · Q5 执行与反馈 / Execution & Follo</div><div class="lv">需关注</div><p>综合均分 3.20，5 位有效评价者。该项能力尚未稳定展现，建议制定专项提升计划。</p></div><div class="rc amber"><div class="t">卡点 2 · Q10 集中意见 / Consolidating Pers</div><div class="lv">中</div><p>综合均分 3.20，5 位有效评价者。基本展现但频次/深度不足。</p></div><div class="rc amber"><div class="t">卡点 3 · Q11 识人预判 / Assessing Strength</div><div class="lv">中</div><p>综合均分 3.20，5 位有效评价者。能力基本合格但稳定性欠佳。</p></div></div></section>
 
 <section><div class="sec-h"><div class="ic">⚠️</div><h2>评价风险点</h2><div class="en">Evaluation Risks</div></div>
-<div class="note" style="margin-bottom:14px">⚠️ 数据可信度：本评估样本量较小（5 位评价者），建议结合多源数据交叉验证后使用</div>
+<div class="note" style="margin-bottom:14px">⚠️ 数据可信度：本评估仅 5 位评价者，且上级（评价人02）评分显著偏低（多题 1-2 分 或 无法判断），建议结合上级一对一面谈交叉验证</div>
 <div class="risk">
-<div class="rc"><div class="t">风险 1 · 评价样本量有限</div><div class="lv">TOP 1</div><p>仅 5 位评价者（1 上级 + 2 平级 + 2 下级），单一评价者对结果影响较大。建议补充更多评价者。</p></div>
-<div class="rc amber"><div class="t">风险 2 · 上级评价偏低</div><div class="lv">TOP 2</div><p>上级评分明显低于其他评价者（部分项仅 1-2 分），需关注是否存在评价偏差或真实能力差距。</p></div>
-<div class="rc amber"><div class="t">风险 3 · 软技能短板</div><div class="lv">TOP 3</div><p>在人员识别、情绪管理等软技能方面评分较低，需上级重点辅导。</p></div>
+<div class="rc"><div class="t">风险 1 · 上级评分严重偏低</div><div class="lv">TOP 1</div><p>上级对候选人多题项评分仅 1-2 分，与平级（4 分为主）形成极大反差。需通过一对一沟通核实真实情况。</p></div>
+<div class="rc amber"><div class="t">风险 2 · 评价覆盖度低</div><div class="lv">TOP 2</div><p>上级在多题选择"无法判断"，覆盖不足。建议补充业务认知。</p></div>
+<div class="rc amber"><div class="t">风险 3 · 平级 vs 下级落差</div><div class="lv">TOP 3</div><p>下级（4-5 分）反馈明显优于平级（约 4 分），需关注实际表现差异。</p></div>
 </div></section>
 
-<section><div class="sec-h"><div class="ic">⭐</div><h2>优势与亮点</h2><div class="en">Strengths</div></div>
-<div class="risk">
-<div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">亮点 1 · Q7 积极作出贡献 / Making Positive </div><div class="lv" style="background:#2f9e44">STRONG</div>
-<p>均分 4.20，5 位有效评价者。表现突出，多位评价者给予高分认可。</p></div>
-<div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">亮点 2 · Q16 提高标准 / Raising Standards</div><div class="lv" style="background:#2f9e44">STRONG</div>
-<p>均分 4.00，5 位有效评价者。表现稳定，行为频次较高。</p></div>
-<div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">亮点 3 · Q19 严格执行 / Strict Execution</div><div class="lv" style="background:#2f9e44">STRONG</div>
-<p>均分 4.00，5 位有效评价者。在该维度形成稳定的高频展现。</p></div>
-</div></section>
+<section><div class="sec-h"><div class="ic">⭐</div><h2>优势与亮点</h2><div class="en">Strengths</div></div><div class="risk"><div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">亮点 1 · Q7 积极作出贡献 / Making Positive </div><div class="lv" style="background:#2f9e44">STRONG</div><p>综合均分 4.20，5 位有效评价者。下属评价尤为认可。</p></div><div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">亮点 2 · Q16 提高标准 / Raising Standards</div><div class="lv" style="background:#2f9e44">STRONG</div><p>综合均分 4.00，5 位有效评价者。</p></div><div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">亮点 3 · Q19 严格执行 / Strict Execution</div><div class="lv" style="background:#2f9e44">STRONG</div><p>综合均分 4.00，5 位有效评价者。</p></div></div></section>
 
 <!-- 4. Text Mining -->
-<section><div class="sec-h"><div class="ic">🔍</div><h2>关键文本挖掘</h2><div class="en">Text Mining</div></div>
-<div class="tags"><span class="atag">情绪稳定性</span><span class="atag em">沟通能力</span><span class="atag">工作轻重</span><span class="atag em">对客态度</span><span class="atag">团队协作</span></div>
+<section>
+<div class="sec-h"><div class="ic">🔍</div><h2>关键文本挖掘</h2><div class="en">Text Mining</div></div>
+<div class="tags">
+<span class="atag">封闭 / 信息不透明</span>
+<span class="atag em">情绪化 / 阴晴不定</span>
+<span class="atag em">双重标准</span>
+<span class="atag">HR 思维惯性</span>
+<span class="atag em">事后响应 / 缺预案</span>
+</div>
 <div class="taglist">
-<div class="tl"><div class="h">情绪稳定性<span>多位评价者</span></div><div class="q">"情绪要稳定... 考虑问题做出判断首先要基于事实不是主观认知地先判断"</div></div>
-<div class="tl"><div class="h">对上对下沟通<span>多位评价者</span></div><div class="q">"对上对下沟通能力"为高频反馈项，建议加强沟通技巧培训</div></div>
-<div class="tl"><div class="h">工作轻重优先级<span>多位评价者</span></div><div class="q">"工作轻重"是核心待提升项，建议建立优先级管理框架</div></div>
-<div class="tl"><div class="h">人员管理软技能<span>多位评价者</span></div><div class="q">"People skills need to be developed" - 平级反馈</div></div>
-</div></section>
+<div class="tl"><div class="h">封闭 / 信息不透明<span>张雷·王瀚驰·谢静·c.fa</span></div><div class="q">"PVG 内部要求是：能不跟中台讲的事情都不要讲"</div></div>
+<div class="tl"><div class="h">情绪化 / 阴晴不定<span>Mathias XU·c.fa</span></div><div class="q">"发小女生脾气""耍大牌摆架子""偶尔会被情绪左右"</div></div>
+<div class="tl"><div class="h">双重标准<span>Mathias XU·王瀚驰</span></div><div class="q">"对华人的要求高出一截""不能公平看待合作人员"</div></div>
+<div class="tl"><div class="h">事后响应 / 缺预案<span>张雷·李章勇</span></div><div class="q">"多为事后响应，缺少前置监测""未制定预案打乱他人计划"</div></div>
+</div>
+<div class="note" style="margin-top:12px">未检出"压榨、甩锅"类词汇；核心负面语义簇为 <b>封闭、情绪化、双标</b>。</div>
+</section>
 
 <!-- 5. Quadrant -->
-<section><div class="sec-h"><div class="ic">🧩</div><h2>综合评价矩阵</h2><div class="en">Quadrant Positioning</div></div>
+<section>
+<div class="sec-h"><div class="ic">🧩</div><h2>综合评价矩阵</h2><div class="en">Quadrant Positioning</div></div>
 <div class="quad-wrap">
 <div id="quadChart"></div>
 <div>
-<div class="qcard" style="border-color:#ffd8a8;background:#fffaf2">
-<h4>📍 当前定位：成长型执行者</h4>
+<div class="qcard" style="border-color:#ffc9c9;background:#fff5f5">
+<h4>📍 当前定位：堡垒型口岸管理者</h4>
 <div class="pos" id="quadPos">-</div>
-<p>下级评分高于平级评分，团队协作较好但跨部门影响力需提升。低分项集中于人员管理与情绪稳定。</p>
+<p>偏袒内圈、缺乏大局观的风险型定位。低分集中于"信息开放度"单一断面，修复杠杆明确。真实画像介于"内部人气王"与"待改善"之间。</p>
 </div>
 <div class="qcard" style="margin-top:12px"><h4>💡 人才决策</h4>
-<p><b style="color:var(--good)">保留 + 定向培养（Develop in place）</b>。执行能力扎实，下属反馈良好；需在管理软技能和沟通上重点提升。</p></div>
+<p><b style="color:var(--good)">保留 + 定向发展（Develop in place）</b>。新任 GM 爬坡期，业务潜力被认可；若 6–12 个月内"封闭对抗中台"无改善，再重新评估。</p></div>
 </div>
-</div></section>
+</div>
+</section>
 
 
 <!-- 7. Heatmap -->
@@ -276,11 +269,7 @@ tr:hover td{background:#f8f9fb}
 
 
 
-<section><div class="sec-h"><div class="ic">📝</div><h2>综合评价总结</h2><div class="en">Overall Summary</div></div>
-<div class="reli-grid">
-<div class="rcard"><h4>核心结论</h4><p>本次 360 评估覆盖 25 项胜任力指标，5 维度，5 位评价者。综合均分 <b style="color:var(--brand)">3.66</b>。</p><p>• <b>优势维度：</b>目标与过程管理<br>• <b>短板维度：</b>识人用人与团队管理<br>• <b>最大分歧项：</b>Q3 (SD=1.34)</p></div>
-<div class="rcard"><h4>发展建议</h4><p>① 提升情绪稳定性，基于事实而非主观判断做决策<br>② 加强对上对下沟通能力<br>③ 拓展人员管理软技能<br>④ 建立工作优先级管理框架</p></div>
-</div></section>
+<section><div class="sec-h"><div class="ic">📝</div><h2>综合评价总结</h2><div class="en">Overall Summary</div></div><div class="reli-grid"><div class="rcard"><h4>评估概况</h4><p>本次 360 评估覆盖 25 项胜任力指标，5 维度，5 位评价者（1 上级 + 2 平级 + 2 下级）。综合均分 <b style="color:var(--brand)">3.66</b>。</p><p>• <b>上级视角：</b>2.72 分（评分偏低，需核实）<br>• <b>平级视角：</b>3.60 分<br>• <b>下级视角：</b>4.20 分<br>• <b>最大分歧项：</b>Q3</p></div><div class="rcard"><h4>发展建议</h4><p>① 安排上级一对一深度沟通<br>② 提升情绪稳定性与人际沟通能力<br>③ 拓展人员管理软技能<br>④ 建立工作优先级管理框架</p></div></div></section>
 
 <footer>
 数据来源：360 胜任力评估问卷 ｜ 本看板基于 5 份问卷的评分与开放文本生成<br>
@@ -294,7 +283,7 @@ tr:hover td{background:#f8f9fb}
 <script>
 const DATA = {"evaluators": [{"name": "评价人02", "relation": "上级"}, {"name": "评价人03", "relation": "平级"}, {"name": "评价人06", "relation": "平级"}, {"name": "评价人04", "relation": "下级"}, {"name": "评价人05", "relation": "下级"}], "questions": [{"short": "Q1", "title": "Q1: 敏锐识别问题 / Proactively Identifyi", "full": "敏锐识别问题 / Proactively Identifying Problems"}, {"short": "Q2", "title": "Q2: 界定与归类问题 / Prioritizing & Class", "full": "界定与归类问题 / Prioritizing & Classifying Problems"}, {"short": "Q3", "title": "Q3: 理性分析 / Rational Analysis", "full": "理性分析 / Rational Analysis"}, {"short": "Q4", "title": "Q4: 形成解决方案 / Forming Solutions", "full": "形成解决方案 / Forming Solutions"}, {"short": "Q5", "title": "Q5: 执行与反馈 / Execution & Follow-up", "full": "执行与反馈 / Execution & Follow-up"}, {"short": "Q6", "title": "Q6: 团队协同 / Team Synergy", "full": "团队协同 / Team Synergy"}, {"short": "Q7", "title": "Q7: 积极作出贡献 / Making Positive Contr", "full": "积极作出贡献 / Making Positive Contributions"}, {"short": "Q8", "title": "Q8: 正向面对矛盾 / Constructively Addres", "full": "正向面对矛盾 / Constructively Addressing Conflicts"}, {"short": "Q9", "title": "Q9: 同步信息 / Synchronizing Informati", "full": "同步信息 / Synchronizing Information"}, {"short": "Q10", "title": "Q10: 集中意见 / Consolidating Perspecti", "full": "集中意见 / Consolidating Perspectives"}, {"short": "Q11", "title": "Q11: 识人预判 / Assessing Strengths & W", "full": "识人预判 / Assessing Strengths & Weaknesses"}, {"short": "Q12", "title": "Q12: 胜任分析 / Competency Analysis", "full": "胜任分析 / Competency Analysis"}, {"short": "Q13", "title": "Q13: 人员搭配 / Role Allocation & Match", "full": "人员搭配 / Role Allocation & Matching"}, {"short": "Q14", "title": "Q14: 人岗匹配 / Person-Role Fit", "full": "人岗匹配 / Person-Role Fit"}, {"short": "Q15", "title": "Q15: 支持发展 / Supporting Development", "full": "支持发展 / Supporting Development"}, {"short": "Q16", "title": "Q16: 提高标准 / Raising Standards", "full": "提高标准 / Raising Standards"}, {"short": "Q17", "title": "Q17: 完善细节 / Refining Details", "full": "完善细节 / Refining Details"}, {"short": "Q18", "title": "Q18: 反复核查 / Repeated Verification", "full": "反复核查 / Repeated Verification"}, {"short": "Q19", "title": "Q19: 严格执行 / Strict Execution", "full": "严格执行 / Strict Execution"}, {"short": "Q20", "title": "Q20: 改进创新 / Improvement & Innovatio", "full": "改进创新 / Improvement & Innovation"}, {"short": "Q21", "title": "Q21: 分解目标 / Breaking Down Goals", "full": "分解目标 / Breaking Down Goals"}, {"short": "Q22", "title": "Q22: 快速行动 / Swift Action", "full": "快速行动 / Swift Action"}, {"short": "Q23", "title": "Q23: 方法得当 / Effective Methods", "full": "方法得当 / Effective Methods"}, {"short": "Q24", "title": "Q24: 目标导向 / Goal-Oriented", "full": "目标导向 / Goal-Oriented"}, {"short": "Q25", "title": "Q25: 持续跟进 / Continuous Follow-up", "full": "持续跟进 / Continuous Follow-up"}], "data": [[{"score": 2, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 5, "comments": {}}], [{"score": 2, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 1, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 3, "comments": {}}, {"score": 5, "comments": {}}, {"score": 3, "comments": {}}], [{"score": 1, "comments": {}}, {"score": 4, "comments": {}}, {"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 3, "comments": {}}, {"score": 5, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 4, "comments": {}}, {"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 5, "comments": {}}, {"score": 5, "comments": {}}], [{"score": 2, "comments": {}}, {"score": 4, "comments": {}}, {"score": 2, "comments": {}}, {"score": 5, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 2, "comments": {}}, {"score": 4, "comments": {}}, {"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 3, "comments": {}}], [{"score": 2, "comments": {}}, {"score": 3, "comments": {}}, {"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 2, "comments": {}}, {"score": 3, "comments": {}}, {"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 3, "comments": {}}, {"score": 2, "comments": {}}, {"score": 5, "comments": {}}, {"score": 5, "comments": {}}], [{"score": 2, "comments": {}}, {"score": 3, "comments": {}}, {"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 5, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 3, "comments": {}}, {"score": 3, "comments": {}}, {"score": 5, "comments": {}}, {"score": 3, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 5, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 3, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 5, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 5, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 3, "comments": {}}, {"score": 5, "comments": {}}, {"score": 4, "comments": {}}]], "q25": [{"author": "评价人02（上级）", "text": "1. 情绪要稳定\n2. 考虑问题，做出判断，首先要基于事实，不是主观认知地先判断\n3. 对上对下沟通能力\n4. 工作轻重缓急的时间分配能力，而非事多是少，都很忙。\n...\n如是专员，很OK； \n如是部门负责人，需要快速提升。"}, {"author": "评价人03（平级）", "text": "People skills need to be developed. In order to manage your team, one must listen and find balance between team's weak and strong points."}, {"author": "评价人06（平级）", "text": "和凯欣共事的这段时间其实也发现了凯欣的优缺点是比较清晰和突出的，优点是对自己和同事高标准严要求，处理事情认真肯干，但是相对的有时候沟通方面对各方的需求，感官会略有欠缺。我们也认识蛮久了，在马城出差的时候我们有谈过心，在哪之后明确的感觉到了凯欣在不断的改善沟通方面的问题，越来越觉有一个团队的感觉。从之前的遇到问题先划分责任，到现在遇到问题，和各团队主动沟通，了解各方需求和顾虑，为了解决问题，主动告诉大家不用担心有责任一起担。在大团队关系变好的情况下，能明显感觉到凯欣的沟通在不断的变好。\n\n另一个建议的点是可以花更多的时间在培养和教导团队的新人上，让他自己的精力能从琐事中释放一些，能有更多时间去和中台精益仓库一同做流程，系统优化等对整体时效和KPI优化有更大提升的内容上。"}], "q26": [], "q27": []};
 const TEMPLATE = {"dimensions": [{"name": "问题分析与解决", "questions": [{"id": "Q1", "text": "敏锐识别问题 / Proactively Iden"}, {"id": "Q2", "text": "界定与归类问题 / Prioritizing & "}, {"id": "Q3", "text": "理性分析 / Rational Analysis"}, {"id": "Q4", "text": "形成解决方案 / Forming Solution"}, {"id": "Q5", "text": "执行与反馈 / Execution & Follo"}]}, {"name": "团队协作与沟通", "questions": [{"id": "Q6", "text": "团队协同 / Team Synergy"}, {"id": "Q7", "text": "积极作出贡献 / Making Positive "}, {"id": "Q8", "text": "正向面对矛盾 / Constructively A"}, {"id": "Q9", "text": "同步信息 / Synchronizing Info"}, {"id": "Q10", "text": "集中意见 / Consolidating Pers"}]}, {"name": "识人用人与团队管理", "questions": [{"id": "Q11", "text": "识人预判 / Assessing Strength"}, {"id": "Q12", "text": "胜任分析 / Competency Analysi"}, {"id": "Q13", "text": "人员搭配 / Role Allocation & "}, {"id": "Q14", "text": "人岗匹配 / Person-Role Fit"}, {"id": "Q15", "text": "支持发展 / Supporting Develop"}]}, {"name": "高标准执行", "questions": [{"id": "Q16", "text": "提高标准 / Raising Standards"}, {"id": "Q17", "text": "完善细节 / Refining Details"}, {"id": "Q18", "text": "反复核查 / Repeated Verificat"}, {"id": "Q19", "text": "严格执行 / Strict Execution"}, {"id": "Q20", "text": "改进创新 / Improvement & Inno"}]}, {"name": "目标与过程管理", "questions": [{"id": "Q21", "text": "分解目标 / Breaking Down Goal"}, {"id": "Q22", "text": "快速行动 / Swift Action"}, {"id": "Q23", "text": "方法得当 / Effective Methods"}, {"id": "Q24", "text": "目标导向 / Goal-Oriented"}, {"id": "Q25", "text": "持续跟进 / Continuous Follow-"}]}], "questions": [{"id": "Q1", "text": "敏锐识别问题 / Proactively Identifyi"}, {"id": "Q2", "text": "界定与归类问题 / Prioritizing & Class"}, {"id": "Q3", "text": "理性分析 / Rational Analysis"}, {"id": "Q4", "text": "形成解决方案 / Forming Solutions"}, {"id": "Q5", "text": "执行与反馈 / Execution & Follow-up"}, {"id": "Q6", "text": "团队协同 / Team Synergy"}, {"id": "Q7", "text": "积极作出贡献 / Making Positive Contr"}, {"id": "Q8", "text": "正向面对矛盾 / Constructively Addres"}, {"id": "Q9", "text": "同步信息 / Synchronizing Informati"}, {"id": "Q10", "text": "集中意见 / Consolidating Perspecti"}, {"id": "Q11", "text": "识人预判 / Assessing Strengths & W"}, {"id": "Q12", "text": "胜任分析 / Competency Analysis"}, {"id": "Q13", "text": "人员搭配 / Role Allocation & Match"}, {"id": "Q14", "text": "人岗匹配 / Person-Role Fit"}, {"id": "Q15", "text": "支持发展 / Supporting Development"}, {"id": "Q16", "text": "提高标准 / Raising Standards"}, {"id": "Q17", "text": "完善细节 / Refining Details"}, {"id": "Q18", "text": "反复核查 / Repeated Verification"}, {"id": "Q19", "text": "严格执行 / Strict Execution"}, {"id": "Q20", "text": "改进创新 / Improvement & Innovatio"}, {"id": "Q21", "text": "分解目标 / Breaking Down Goals"}, {"id": "Q22", "text": "快速行动 / Swift Action"}, {"id": "Q23", "text": "方法得当 / Effective Methods"}, {"id": "Q24", "text": "目标导向 / Goal-Oriented"}, {"id": "Q25", "text": "持续跟进 / Continuous Follow-up"}], "idp": []};
-const DIM_AVGS = {"问题分析与解决": {"peer": 3.1333333333333333, "sub": 4.1}, "团队协作与沟通": {"peer": 3.2666666666666666, "sub": 4.3}, "识人用人与团队管理": {"peer": 2.7333333333333334, "sub": 4.3}, "高标准执行": {"peer": 3.6666666666666665, "sub": 4.0}, "目标与过程管理": {"peer": 3.7333333333333334, "sub": 4.3}};
+const DIM_AVGS = {"问题分析与解决": {"sup": 1.8, "peer": 3.8, "sub": 4.1}, "团队协作与沟通": {"sup": 2.8, "peer": 3.5, "sub": 4.3}, "识人用人与团队管理": {"sup": 2.4, "peer": 2.9, "sub": 4.3}, "高标准执行": {"sup": 3.2, "peer": 3.9, "sub": 4.0}, "目标与过程管理": {"sup": 3.4, "peer": 3.9, "sub": 4.3}};
 
 const CATEGORIES = TEMPLATE.dimensions.map(d => d.name);
 const Q_TITLES = {};
@@ -353,20 +342,31 @@ document.getElementById('kpi_bot_val').textContent = sortedCats[sortedCats.lengt
 document.getElementById('kpi_subvpeer').textContent = (kpiSubAvg||0).toFixed(2) + ' / ' + (kpiPeerAvg||0).toFixed(2);
 document.getElementById('quadPos').textContent = '下级 ' + (kpiSubAvg||0).toFixed(2) + ' / 平级 ' + (kpiPeerAvg||0).toFixed(2);
 
-// ─── Dim Bars ───
+
+// ─── Dim Bars (3 categories) ───
 (function(){
   var host = document.getElementById('dimBars'), html = '';
   CATEGORIES.forEach(function(dim){
-    var d = DIM_AVGS[dim] || {peer:0, sub:0};
-    var pw = (d.peer/5*100).toFixed(1), sw = (d.sub/5*100).toFixed(1);
-    html += '<div class="bar-line"><div class="name">' + dim + '</div><div class="bar-track"><div class="bar-fill peer" style="width:0%" data-w="'+pw+'">' + d.peer.toFixed(2) + '</div></div></div>';
-    html += '<div class="bar-line" style="margin-top:-4px"><div class="name" style="color:#adb5bd;font-size:11px">　下级</div><div class="bar-track"><div class="bar-fill sub" style="width:0%" data-w="'+sw+'">' + d.sub.toFixed(2) + '</div></div></div>';
+    var d = DIM_AVGS[dim] || {sup:0, peer:0, sub:0};
+    html += '<div style="margin:6px 0;">';
+    html += '<div class="name" style="font-size:12px;color:#5b6675;margin-bottom:3px;">' + dim + '</div>';
+    var rows = [{label: '上级', val: d.sup, color: '#3b5bdb'}, {label: '平级', val: d.peer, color: '#4263eb'}, {label: '下级', val: d.sub, color: '#e8590c'}];
+    rows.forEach(function(r){
+      var w = (r.val/5*100).toFixed(1);
+      html += '<div style="display:flex;align-items:center;height:18px;margin-bottom:2px;">';
+      html += '<div style="width:50px;font-size:11px;color:' + r.color + ';">' + r.label + '</div>';
+      html += '<div style="flex:1;background:#f1f3f9;border-radius:4px;height:18px;position:relative;overflow:hidden;">';
+      html += '<div style="background:' + r.color + ';height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;color:#fff;font-size:11px;font-weight:600;transition:width 1s;width:0%" data-w="' + w + '">' + r.val.toFixed(2) + '</div></div>';
+      html += '</div>';
+    });
+    html += '</div>';
   });
   host.innerHTML = html;
-  requestAnimationFrame(function(){ setTimeout(function(){
-    host.querySelectorAll('.bar-fill').forEach(function(b){ b.style.width = b.dataset.w + '%'; });
-  }, 120); });
+  setTimeout(function(){
+    host.querySelectorAll('div[style*="transition:width 1s"]').forEach(function(b){ b.style.width = b.dataset.w + '%'; });
+  }, 200);
 })();
+
 
 // ─── Radar ───
 new Chart(document.getElementById('radarChart'), {
@@ -407,7 +407,7 @@ new Chart(document.getElementById('barChart'), {
 
 // ─── Quadrant ───
 (function(){
-  var W = 420, H = 380, pad = 46, max = 5, min = 0; var xPeer=3.3066666666666666, ySub=4.2;
+  var W = 420, H = 380, pad = 46, max = 5, min = 0;
   var px = (kpiPeerAvg||3) / 5 * (W-2*pad) + pad;
   var py = H - pad - ((kpiSubAvg||4) / 5 * (H-2*pad));
   var cx = 3.5/5*(W-2*pad)+pad, cy = H-pad-3.5/5*(H-2*pad);
