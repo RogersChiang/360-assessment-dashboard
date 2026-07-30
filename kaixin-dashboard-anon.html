@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaixin Zhao · 360° 基层干部胜任力评价</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js">
+</script>
+<style>
+:root{
+  --bg:#f4f6fb; --card:#ffffff; --ink:#1f2733; --ink2:#5b6675; --line:#e6eaf2;
+  --brand:#3b5bdb; --brand-soft:#eef2ff;
+  --good:#2f9e44; --mid:#f08c00; --bad:#e03131;
+  --peer:#3b5bdb; --sub:#e8590c;
+  --shadow:0 1px 3px rgba(20,30,60,.06),0 6px 24px rgba(20,30,60,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;padding-bottom:60px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 22px}
+header.hero{background:linear-gradient(120deg,#2b3a8f,#3b5bdb 55%,#5c7cfa);color:#fff;padding:28px 0 34px}
+header.hero .wrap{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px}
+.hero h1{font-size:24px;font-weight:700}
+.hero .sub{opacity:.9;font-size:13px;margin-top:6px}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);padding:4px 11px;border-radius:999px;font-size:12px;margin-top:8px}
+.pill{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:10px;padding:10px 14px;font-size:13px;text-align:center;min-width:118px}
+.pill b{display:block;font-size:21px;font-weight:800;margin-top:2px}
+
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin:-22px 0 26px}
+.kpi{background:var(--card);border-radius:14px;padding:16px 16px 15px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.kpi .l{font-size:12.5px;color:var(--ink2);display:flex;align-items:center;gap:6px}
+.kpi .v{font-size:20px;font-weight:800;margin-top:7px;letter-spacing:0;line-height:1.3}
+.kpi .d{font-size:11.5px;color:var(--ink2);margin-top:3px}
+.kpi.warn{border-color:#ffd8a8;background:#fffaf2}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.dot.bad{background:var(--bad)} .dot.good{background:var(--good)} .dot.brand{background:var(--brand)}
+
+section{background:var(--card);border-radius:16px;padding:22px 22px 18px;margin-bottom:20px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.sec-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.sec-h .ic{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:16px;background:var(--brand-soft);color:var(--brand)}
+.sec-h h2{font-size:17px;font-weight:700}
+.sec-h .en{font-size:12px;color:var(--ink2);margin-left:auto}
+.note{font-size:12.5px;color:var(--ink2);margin:4px 0 14px}
+
+/* Dim bars */
+.chart-row{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:center}
+@media(max-width:880px){.chart-row{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}}
+.bar-line{display:flex;align-items:center;gap:10px;margin:8px 0;font-size:13px}
+.bar-line .name{width:172px;flex:none;color:var(--ink2);text-align:right}
+.bar-track{flex:1;background:#f1f3f9;border-radius:7px;height:22px;position:relative;overflow:hidden}
+.bar-fill{height:100%;border-radius:7px;display:flex;align-items:center;justify-content:flex-end;padding-right:7px;color:#fff;font-size:11.5px;font-weight:700;transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.bar-fill.peer{background:linear-gradient(90deg,#4263eb,#5c7cfa)}
+.bar-fill.sub{background:linear-gradient(90deg,#e8590c,#ff922b)}
+.legend{display:flex;gap:18px;font-size:12.5px;color:var(--ink2);margin:2px 0 14px}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block;margin-right:6px;vertical-align:-1px}
+
+.reli-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rcard{border:1px solid var(--line);border-radius:11px;padding:13px 14px;background:#fbfcfe}
+.rcard h4{font-size:13.5px;margin-bottom:6px}
+.rcard p{font-size:12.5px;color:var(--ink2)}
+.rcard.alert{border-color:#ffc9c9;background:#fff0f0}
+.rcard.alert h4{color:var(--bad)}
+
+.risk{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:880px){.risk{grid-template-columns:1fr}}
+.rc{border:1px solid var(--line);border-radius:13px;padding:15px 15px 14px;background:#fff;position:relative;overflow:hidden}
+.rc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--bad)}
+.rc.amber::before{background:var(--mid)}
+.rc .t{font-size:14px;font-weight:700;margin-bottom:5px}
+.rc .lv{font-size:11px;font-weight:700;color:#fff;background:var(--bad);border-radius:6px;padding:1px 8px;display:inline-block;margin-bottom:8px}
+.rc.amber .lv{background:var(--mid)}
+.rc p{font-size:12.5px;color:var(--ink2);margin-top:4px}
+.quote{border-left:3px solid #ced4da;padding:5px 0 5px 11px;margin:9px 0 4px;font-size:12px;color:#495057;font-style:italic}
+
+.tags{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:14px}
+.atag{background:#fff0f0;color:#c92a2a;border:1px solid #ffc9c9;border-radius:999px;padding:5px 13px;font-size:12.5px;font-weight:600}
+.atag.em{background:#fff4e6;color:#d9480f;border-color:#ffd8a8}
+.taglist{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:880px){.taglist{grid-template-columns:1fr}}
+.tl{border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+.tl .h{font-size:13px;font-weight:700;display:flex;justify-content:space-between}
+.tl .h span{font-size:11px;color:var(--ink2);font-weight:500}
+.tl .q{font-size:12px;color:var(--ink2);margin-top:4px}
+
+.quad-wrap{display:grid;grid-template-columns:1fr .9fr;gap:26px;align-items:center}
+@media(max-width:880px){.quad-wrap{grid-template-columns:1fr}}
+.qcard{border:1px solid var(--line);border-radius:12px;padding:15px 17px;background:#fbfcfe}
+.qcard h4{font-size:14px;margin-bottom:8px}
+.qcard .pos{font-size:13px;font-weight:700;color:var(--brand);margin:4px 0}
+.qcard p{font-size:12.5px;color:var(--ink2)}
+
+.tl2{position:relative;padding-left:26px}
+.tl2::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.step{position:relative;margin-bottom:17px}
+.step::before{content:"";position:absolute;left:-22px;top:4px;width:13px;height:13px;border-radius:50%;background:#fff;border:3px solid var(--brand)}
+.step.s1::before{border-color:var(--bad)} .step.s2::before{border-color:var(--mid)}
+.step.s3::before{border-color:#1971c2} .step.s4::before{border-color:#2f9e44}
+.step .ph{font-size:12px;font-weight:700;color:var(--brand)}
+.step.s1 .ph{color:var(--bad)} .step.s2 .ph{color:var(--mid)} .step.s3 .ph{color:#1971c2} .step.s4 .ph{color:#2f9e44}
+.step .ti{font-size:14px;font-weight:700;margin:2px 0 4px}
+.step li{font-size:12.5px;color:var(--ink2);margin:3px 0 3px 16px}
+
+/* IDP & heatmap (from v2, simplified) */
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600}
+.badge-high{background:#e8f5e9;color:#2e7d32}
+.badge-mid{background:#fff3e0;color:#e65100}
+.badge-low{background:#fce4ec;color:#c62828}
+.heat-cell{width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#333;position:relative;margin:0 auto}
+.na-cell{color:#ccc;background:#f5f5f5}
+.heat-cell.has-comment{box-shadow:0 0 0 2px #3b5bdb,0 0 0 4px rgba(59,91,219,.3);cursor:help}
+.heat-cell.has-comment::after{content:"💬";position:absolute;top:-8px;right:-8px;font-size:10px;background:#fff;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;line-height:1;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.q-text{font-size:12px;font-weight:500;cursor:help;border-bottom:1px dotted var(--ink2);display:inline-block;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.q-text:hover{color:var(--brand);border-bottom-color:var(--brand)}
+.tooltip-box{position:fixed;z-index:10000;max-width:320px;background:#1f2733;color:#fff;padding:10px 12px;border-radius:8px;font-size:12px;line-height:1.6;box-shadow:0 4px 16px rgba(0,0,0,.2);pointer-events:none;opacity:0;transition:opacity .15s;white-space:pre-wrap;word-break:break-word}
+.tooltip-box.show{opacity:1}
+
+.idp-goal{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin-bottom:16px}
+.idp-goal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.idp-goal-title{font-size:15px;font-weight:600;color:var(--ink)}
+.idp-phase-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:var(--brand);color:#fff;margin-left:8px}
+.idp-cat-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:#e8eaf6;color:var(--brand);margin-left:4px}
+.idp-status{display:inline-block;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600}
+.idp-status.achieved{background:#e8f5e9;color:#2e7d32}
+.idp-status.partial{background:#fff3e0;color:#e65100}
+.idp-status.unachieved{background:#fce4ec;color:#c62828}
+.idp-section{margin-top:10px;font-size:13px;color:var(--ink);line-height:1.7}
+.idp-section strong{color:var(--brand);display:block;margin-bottom:4px;font-size:12px}
+.idp-reqs{padding-left:18px;margin:4px 0}
+.idp-reqs li{margin-bottom:4px;font-size:12px;color:var(--ink2)}
+.idp-q-map{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.idp-q-chip{background:#f0f4ff;color:var(--brand);padding:2px 8px;border-radius:12px;font-size:11px;font-weight:500}
+.idp-q-score{background:#f8f9fb;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;margin-left:6px}
+.idp-q-score.high{background:#e8f5e9;color:#2e7d32}
+.idp-q-score.mid{background:#fff3e0;color:#e65100}
+.idp-q-score.low{background:#fce4ec;color:#c62828}
+.idp-ai-analysis{background:linear-gradient(135deg,#f8f9ff,#f0f4ff);border:1px solid #d6deff;border-radius:8px;padding:12px 16px;margin-top:10px;font-size:12px;color:var(--ink);line-height:1.7;position:relative}
+.idp-ai-analysis .ai-title{font-weight:600;color:var(--brand);font-size:12px;margin-bottom:4px}
+.idp-ai-analysis .ai-content{color:#444}
+
+.tab-nav{display:flex;gap:0;margin-bottom:16px;border-bottom:2px solid var(--line);overflow-x:auto}
+.tab-btn{padding:10px 18px;border:none;background:none;cursor:pointer;font-size:14px;font-weight:500;color:var(--ink2);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.tab-btn.active{color:var(--brand);border-bottom-color:var(--brand);font-weight:600}
+.tab-btn:hover{color:var(--brand)}
+.comment-box{border-left:3px solid var(--brand);padding:12px 16px;margin-bottom:12px;background:#f8f9fb;border-radius:0 8px 8px 0;font-size:13px}
+.comment-box .author{font-weight:600;color:var(--brand);margin-bottom:6px;font-size:12px}
+.comment-box .content{color:var(--ink);line-height:1.7;white-space:pre-wrap}
+
+footer{text-align:center;color:var(--ink2);font-size:11.5px;margin-top:30px;line-height:1.8}
+.flag{display:inline-flex;align-items:center;gap:6px;background:#fff7ed;border:1px solid #ffd8a8;color:#d9480f;border-radius:8px;padding:6px 12px;font-size:12.5px;font-weight:600;margin-bottom:14px}
+
+.chart-wrap{position:relative;width:100%;height:380px}
+.chart-wrap.tall{height:440px}
+.canvas-wrap{position:relative;height:100%}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+th{background:#f8f9fb;font-weight:600;color:var(--ink2);font-size:12px;position:sticky;top:0}
+tr:hover td{background:#f8f9fb}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="wrap">
+<div>
+<h1>🎯 Kaixin Zhao · 360° 环评诊断看板 <span style="font-size:14px;font-weight:400;opacity:.8;">匿名版（基层干部）</span></h1>
+<div class="sub">IDP 第二阶段 胜任力评估 ｜ 分析范围 Q1–Q24 评分 + Q25–Q27 开放题 ｜ 5 位评价者（3 平级 + 2 下级）</div>
+<span class="tag">被评估人：Kaixin Zhao（PVG 总经理）</span>
+<span class="tag">7 维度 · 24 项胜任力指标</span>
+</div>
+<div style="display:flex;gap:10px">
+<div class="pill">有效平级<b>3</b></div>
+<div class="pill">有效下级<b>2</b></div>
+<div class="pill">平级均分<b>3.00</b></div>
+</div>
+</div>
+</header>
+
+<div class="wrap">
+
+<!-- KPI Row -->
+<div class="kpis">
+<div class="kpi"><div class="l"><span class="dot brand"></span>综合平均分</div><div class="v" id="kpi_all">-</div><div class="d" id="kpi_all_n">满分 5.0</div></div>
+<div class="kpi"><div class="l"><span class="dot brand"></span>最高维度</div><div class="v" style="color:var(--good)" id="kpi_top_dim">-</div><div class="d" id="kpi_top_val"></div></div>
+<div class="kpi warn"><div class="l"><span class="dot bad"></span>最低维度</div><div class="v" style="color:var(--bad)" id="kpi_bot_dim">-</div><div class="d" id="kpi_bot_val"></div></div>
+<div class="kpi"><div class="l"><span class="dot brand"></span>下级 vs 平级</div><div class="v" style="font-size:24px" id="kpi_subvpeer">-</div><div class="d">约 0.8 分差</div></div>
+<div class="kpi warn"><div class="l"><span class="dot bad"></span>最大分歧项</div><div class="v" style="color:var(--bad)" id="kpi_div">Q2</div><div class="d">SD=1.0</div></div>
+</div>
+
+<!-- 1. Dimension Overview -->
+<section>
+<div class="sec-h"><div class="ic">📊</div><h2>维度对比分析（平级 vs 下级）</h2><div class="en">Dimension Comparison</div></div>
+<div class="chart-row">
+<div>
+<div class="legend"><span><i style="background:#4263eb"></i>平级均分</span><span><i style="background:#e8590c"></i>下级均分</span><span style="color:#adb5bd;font-size:11px">（5 分制）</span></div>
+<div id="dimBars"></div>
+</div>
+<div style="display:flex;align-items:center;justify-content:center">
+<div id="radarWrap" style="width:100%;max-width:360px"><canvas id="radarChart"></canvas></div>
+</div>
+</div>
+</section>
+
+
+<!-- 3. Risk Analysis -->
+<section><div class="sec-h"><div class="ic">🚧</div><h2>待提升能力</h2><div class="en">Development Areas</div></div>
+<div class="risk"><div class="rc"><div class="t">Q5 执行与反馈 / Execution & Follo</div><div class="lv">需关注</div><p>均分 2.7，5 位有效评价者。</p></div>
+<div class="rc amber"><div class="t">Q8 正向面对矛盾 / Constructively A</div><div class="lv">中</div><p>均分 2.7，5 位有效评价者。</p></div>
+<div class="rc amber"><div class="t">Q11 识人预判 / Assessing Strength</div><div class="lv">中</div><p>均分 2.7，5 位有效评价者。</p></div></div></section>
+
+
+
+<section><div class="sec-h"><div class="ic">⭐</div><h2>优势与亮点</h2><div class="en">Strengths</div></div>
+<div class="risk"><div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">Q19 严格执行 / Strict Execution</div><div class="lv" style="background:#2f9e44">STRONG</div><p>均分 4.0，5 位有效评价者。</p></div>
+<div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">Q22 快速行动 / Swift Action</div><div class="lv" style="background:#2f9e44">STRONG</div><p>均分 4.0，5 位有效评价者。</p></div>
+<div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">Q7 积极作出贡献 / Making Positive </div><div class="lv" style="background:#2f9e44">STRONG</div><p>均分 3.7，5 位有效评价者。</p></div></div></section>
+
+<!-- 4. Text Mining -->
+
+
+<!-- 5. Quadrant -->
+
+
+
+<!-- 7. Heatmap -->
+
+
+
+
+
+
+<!-- 9. Open-ended -->
+<section>
+<div class="sec-h"><div class="ic">💬</div><h2>开放性问题汇总</h2><div class="en">Open Responses</div></div>
+<div class="tab-nav">
+<button class="tab-btn active" data-tab="q25" onclick="switchTab('q25')">Q25 · 待提升与改进方面</button>
+<button class="tab-btn" data-tab="q26" onclick="switchTab('q26')">Q26 · 印象最深的管理决策</button>
+<button class="tab-btn" data-tab="q27" onclick="switchTab('q27')">Q27 · 建议获取的外部支持</button>
+</div>
+<div id="tab-q25" class="tab-content"></div>
+<div id="tab-q26" class="tab-content" style="display:none"></div>
+<div id="tab-q27" class="tab-content" style="display:none"></div>
+</section>
+
+
+
+<section><div class="sec-h"><div class="ic">📝</div><h2>综合评价总结</h2><div class="en">Overall Summary</div></div>
+<div class="reli-grid"><div class="rcard"><h4>评估概况</h4><p>本次 360 评估覆盖 25 项胜任力指标，5 维度，5 位评价者（1 上级 + 2 平级 + 2 下级）。</p><p>• <b>优势：</b>高标准执行、执行与跟进<br>• <b>待发展：</b>情绪管理、沟通与协作</p></div>
+<div class="rcard"><h4>发展建议</h4><p>① 提升情绪稳定性，基于事实而非主观判断做决策<br>② 加强对上对下沟通能力<br>③ 拓展人员管理软技能</p></div></div></section>
+
+<footer>
+数据来源：360 胜任力评估问卷 ｜ 本看板基于 5 份问卷的评分与开放文本生成<br>
+下级样本有限，相关结论请结合业绩数据与上级访谈交叉验证后使用。
+</footer>
+
+<div class="tooltip-box" id="tooltip"></div>
+</div><!-- .wrap -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script>
+const DATA = {"evaluators": [{"name": "评价人1", "relation": "上级"}, {"name": "评价人2", "relation": "平级"}, {"name": "评价人3", "relation": "平级"}, {"name": "评价人4", "relation": "下级"}, {"name": "评价人5", "relation": "下级"}], "questions": [{"short": "Q1", "title": "Q1: 敏锐识别问题 / Proactively Identifyi", "full": "敏锐识别问题 / Proactively Identifying Problems"}, {"short": "Q2", "title": "Q2: 界定与归类问题 / Prioritizing & Class", "full": "界定与归类问题 / Prioritizing & Classifying Problems"}, {"short": "Q3", "title": "Q3: 理性分析 / Rational Analysis", "full": "理性分析 / Rational Analysis"}, {"short": "Q4", "title": "Q4: 形成解决方案 / Forming Solutions", "full": "形成解决方案 / Forming Solutions"}, {"short": "Q5", "title": "Q5: 执行与反馈 / Execution & Follow-up", "full": "执行与反馈 / Execution & Follow-up"}, {"short": "Q6", "title": "Q6: 团队协同 / Team Synergy", "full": "团队协同 / Team Synergy"}, {"short": "Q7", "title": "Q7: 积极作出贡献 / Making Positive Contr", "full": "积极作出贡献 / Making Positive Contributions"}, {"short": "Q8", "title": "Q8: 正向面对矛盾 / Constructively Addres", "full": "正向面对矛盾 / Constructively Addressing Conflicts"}, {"short": "Q9", "title": "Q9: 同步信息 / Synchronizing Informati", "full": "同步信息 / Synchronizing Information"}, {"short": "Q10", "title": "Q10: 集中意见 / Consolidating Perspecti", "full": "集中意见 / Consolidating Perspectives"}, {"short": "Q11", "title": "Q11: 识人预判 / Assessing Strengths & W", "full": "识人预判 / Assessing Strengths & Weaknesses"}, {"short": "Q12", "title": "Q12: 胜任分析 / Competency Analysis", "full": "胜任分析 / Competency Analysis"}, {"short": "Q13", "title": "Q13: 人员搭配 / Role Allocation & Match", "full": "人员搭配 / Role Allocation & Matching"}, {"short": "Q14", "title": "Q14: 人岗匹配 / Person-Role Fit", "full": "人岗匹配 / Person-Role Fit"}, {"short": "Q15", "title": "Q15: 支持发展 / Supporting Development", "full": "支持发展 / Supporting Development"}, {"short": "Q16", "title": "Q16: 提高标准 / Raising Standards", "full": "提高标准 / Raising Standards"}, {"short": "Q17", "title": "Q17: 完善细节 / Refining Details", "full": "完善细节 / Refining Details"}, {"short": "Q18", "title": "Q18: 反复核查 / Repeated Verification", "full": "反复核查 / Repeated Verification"}, {"short": "Q19", "title": "Q19: 严格执行 / Strict Execution", "full": "严格执行 / Strict Execution"}, {"short": "Q20", "title": "Q20: 改进创新 / Improvement & Innovatio", "full": "改进创新 / Improvement & Innovation"}, {"short": "Q21", "title": "Q21: 分解目标 / Breaking Down Goals", "full": "分解目标 / Breaking Down Goals"}, {"short": "Q22", "title": "Q22: 快速行动 / Swift Action", "full": "快速行动 / Swift Action"}, {"short": "Q23", "title": "Q23: 方法得当 / Effective Methods", "full": "方法得当 / Effective Methods"}, {"short": "Q24", "title": "Q24: 目标导向 / Goal-Oriented", "full": "目标导向 / Goal-Oriented"}, {"short": "Q25", "title": "Q25: 持续跟进 / Continuous Follow-up", "full": "持续跟进 / Continuous Follow-up"}], "data": [[{"score": 2, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 5, "comments": {}}], [{"score": 2, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 1, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 3, "comments": {}}, {"score": 5, "comments": {}}, {"score": 3, "comments": {}}], [{"score": 1, "comments": {}}, {"score": 4, "comments": {}}, {"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 3, "comments": {}}, {"score": 5, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 4, "comments": {}}, {"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 5, "comments": {}}, {"score": 5, "comments": {}}], [{"score": 2, "comments": {}}, {"score": 4, "comments": {}}, {"score": 2, "comments": {}}, {"score": 5, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 2, "comments": {}}, {"score": 4, "comments": {}}, {"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 3, "comments": {}}], [{"score": 2, "comments": {}}, {"score": 3, "comments": {}}, {"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 2, "comments": {}}, {"score": 3, "comments": {}}, {"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 3, "comments": {}}, {"score": 2, "comments": {}}, {"score": 5, "comments": {}}, {"score": 5, "comments": {}}], [{"score": 2, "comments": {}}, {"score": 3, "comments": {}}, {"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 5, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 3, "comments": {}}, {"score": 3, "comments": {}}, {"score": 5, "comments": {}}, {"score": 3, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 5, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 3, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 5, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 5, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 3, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 4, "comments": {}}], [{"score": 4, "comments": {}}, {"score": 4, "comments": {}}, {"score": 3, "comments": {}}, {"score": 5, "comments": {}}, {"score": 4, "comments": {}}]], "q25": [{"author": "评价人1（上级）", "text": "1. 情绪要稳定\n2. 考虑问题，做出判断，首先要基于事实，不是主观认知地先判断\n3. 对上对下沟通能力\n4. 工作轻重缓急的时间分配能力，而非事多是少，都很忙。\n...\n如是专员，很OK； \n如是部门负责人，需要快速提升。"}, {"author": "评价人2（平级）", "text": "People skills need to be developed. In order to manage your team, one must listen and find balance between team's weak and strong points."}, {"author": "评价人3（平级）", "text": "和凯欣共事的这段时间其实也发现了凯欣的优缺点是比较清晰和突出的，优点是对自己和同事高标准严要求，处理事情认真肯干，但是相对的有时候沟通方面对各方的需求，感官会略有欠缺。我们也认识蛮久了，在马城出差的时候我们有谈过心，在哪之后明确的感觉到了凯欣在不断的改善沟通方面的问题，越来越觉有一个团队的感觉。从之前的遇到问题先划分责任，到现在遇到问题，和各团队主动沟通，了解各方需求和顾虑，为了解决问题，主动告诉大家不用担心有责任一起担。在大团队关系变好的情况下，能明显感觉到凯欣的沟通在不断的变好。\n\n另一个建议的点是可以花更多的时间在培养和教导团队的新人上，让他自己的精力能从琐事中释放一些，能有更多时间去和中台精益仓库一同做流程，系统优化等对整体时效和KPI优化有更大提升的内容上。"}], "q26": [], "q27": []};
+const TEMPLATE = {"dimensions": [{"name": "问题分析与解决", "questions": [{"id": "Q1", "text": "敏锐识别问题 / Proactively Iden"}, {"id": "Q2", "text": "界定与归类问题 / Prioritizing & "}, {"id": "Q3", "text": "理性分析 / Rational Analysis"}, {"id": "Q4", "text": "形成解决方案 / Forming Solution"}, {"id": "Q5", "text": "执行与反馈 / Execution & Follo"}]}, {"name": "团队协作与沟通", "questions": [{"id": "Q6", "text": "团队协同 / Team Synergy"}, {"id": "Q7", "text": "积极作出贡献 / Making Positive "}, {"id": "Q8", "text": "正向面对矛盾 / Constructively A"}, {"id": "Q9", "text": "同步信息 / Synchronizing Info"}, {"id": "Q10", "text": "集中意见 / Consolidating Pers"}]}, {"name": "识人用人与团队管理", "questions": [{"id": "Q11", "text": "识人预判 / Assessing Strength"}, {"id": "Q12", "text": "胜任分析 / Competency Analysi"}, {"id": "Q13", "text": "人员搭配 / Role Allocation & "}, {"id": "Q14", "text": "人岗匹配 / Person-Role Fit"}, {"id": "Q15", "text": "支持发展 / Supporting Develop"}]}, {"name": "高标准执行", "questions": [{"id": "Q16", "text": "提高标准 / Raising Standards"}, {"id": "Q17", "text": "完善细节 / Refining Details"}, {"id": "Q18", "text": "反复核查 / Repeated Verificat"}, {"id": "Q19", "text": "严格执行 / Strict Execution"}, {"id": "Q20", "text": "改进创新 / Improvement & Inno"}]}, {"name": "目标与过程管理", "questions": [{"id": "Q21", "text": "分解目标 / Breaking Down Goal"}, {"id": "Q22", "text": "快速行动 / Swift Action"}, {"id": "Q23", "text": "方法得当 / Effective Methods"}, {"id": "Q24", "text": "目标导向 / Goal-Oriented"}, {"id": "Q25", "text": "持续跟进 / Continuous Follow-"}]}], "questions": [{"id": "Q1", "text": "敏锐识别问题 / Proactively Identifyi"}, {"id": "Q2", "text": "界定与归类问题 / Prioritizing & Class"}, {"id": "Q3", "text": "理性分析 / Rational Analysis"}, {"id": "Q4", "text": "形成解决方案 / Forming Solutions"}, {"id": "Q5", "text": "执行与反馈 / Execution & Follow-up"}, {"id": "Q6", "text": "团队协同 / Team Synergy"}, {"id": "Q7", "text": "积极作出贡献 / Making Positive Contr"}, {"id": "Q8", "text": "正向面对矛盾 / Constructively Addres"}, {"id": "Q9", "text": "同步信息 / Synchronizing Informati"}, {"id": "Q10", "text": "集中意见 / Consolidating Perspecti"}, {"id": "Q11", "text": "识人预判 / Assessing Strengths & W"}, {"id": "Q12", "text": "胜任分析 / Competency Analysis"}, {"id": "Q13", "text": "人员搭配 / Role Allocation & Match"}, {"id": "Q14", "text": "人岗匹配 / Person-Role Fit"}, {"id": "Q15", "text": "支持发展 / Supporting Development"}, {"id": "Q16", "text": "提高标准 / Raising Standards"}, {"id": "Q17", "text": "完善细节 / Refining Details"}, {"id": "Q18", "text": "反复核查 / Repeated Verification"}, {"id": "Q19", "text": "严格执行 / Strict Execution"}, {"id": "Q20", "text": "改进创新 / Improvement & Innovatio"}, {"id": "Q21", "text": "分解目标 / Breaking Down Goals"}, {"id": "Q22", "text": "快速行动 / Swift Action"}, {"id": "Q23", "text": "方法得当 / Effective Methods"}, {"id": "Q24", "text": "目标导向 / Goal-Oriented"}, {"id": "Q25", "text": "持续跟进 / Continuous Follow-up"}], "idp": []};
+const DIM_AVGS = {"问题分析与解决": {"peer": 3.1333333333333333, "sub": 4.1}, "团队协作与沟通": {"peer": 3.2666666666666666, "sub": 4.3}, "识人用人与团队管理": {"peer": 2.7333333333333334, "sub": 4.3}, "高标准执行": {"peer": 3.6666666666666665, "sub": 4.0}, "目标与过程管理": {"peer": 3.7333333333333334, "sub": 4.3}};
+
+const CATEGORIES = TEMPLATE.dimensions.map(d => d.name);
+const Q_TITLES = {};
+const Q_FULL_TEXT = {};
+TEMPLATE.questions.forEach(q => {
+  Q_TITLES[q.id] = q.id + ' ' + q.text.substring(0, 30);
+  Q_FULL_TEXT[q.id] = q.id + ' ' + q.text;
+});
+const Q_TO_DIM = {};
+TEMPLATE.questions.forEach(q => { Q_TO_DIM[q.id] = q.dimension; });
+const Q_KEYS = TEMPLATE.questions.map(q => q.id);
+const EVALUATORS = DATA.evaluators;
+
+function avg(arr) { const f = arr.filter(v => v !== null && !isNaN(v)); return f.length ? f.reduce((a,b)=>a+b,0)/f.length : null; }
+
+const SCORES = {};
+Q_KEYS.forEach((qk, qi) => {
+  if (DATA.questions[qi]) SCORES[qk] = DATA.data[qi].map(d => d.score);
+});
+function getComment(qIdx, eIdx) {
+  const d = DATA.data[qIdx][eIdx];
+  if (!d.comments || Object.keys(d.comments).length === 0) return null;
+  const score = d.score;
+  if (score !== null && d.comments[String(score)]) return d.comments[String(score)];
+  for (const k of Object.keys(d.comments)) { if (d.comments[k]) return d.comments[k]; }
+  return null;
+}
+
+const catAvgs = {};
+TEMPLATE.dimensions.forEach(dim => {
+  const qs = dim.questions.map(q => q.id);
+  let all = [];
+  qs.forEach(q => { if (SCORES[q]) all = all.concat(SCORES[q]); });
+  catAvgs[dim.name] = avg(all);
+});
+const qAvgs = {};
+Q_KEYS.forEach(q => { qAvgs[q] = SCORES[q] ? avg(SCORES[q]) : null; });
+const evalAvgs = EVALUATORS.map((_, i) => avg(Q_KEYS.map(q => SCORES[q] ? SCORES[q][i] : null)));
+
+const allValidScores = [];
+Q_KEYS.forEach(q => { if (SCORES[q]) SCORES[q].forEach(v => { if (v !== null && !isNaN(v)) allValidScores.push(v); }); });
+const allAvg = avg(allValidScores) || 0;
+const sortedCats = Object.entries(catAvgs).sort((a,b) => (b[1]||0) - (a[1]||0));
+const sortedQAvgs = Q_KEYS.map(q => ({q, v: qAvgs[q]})).filter(x => x.v !== null).sort((a,b) => (a.v||0)-(b.v||0));
+const top5 = sortedQAvgs.slice(-5).reverse(), bottom5 = sortedQAvgs.slice(0, 5);
+
+// ─── KPI Cards ───
+var kpiSubAvg = avg(EVALUATORS.filter((_,i)=>EVALUATORS[i].relation==='下级').map((_,i)=>evalAvgs[i]));
+var kpiPeerAvg = avg(EVALUATORS.filter((_,i)=>EVALUATORS[i].relation!=='下级').map((_,i)=>evalAvgs[i]));
+document.getElementById('kpi_all').textContent = allAvg.toFixed(2);
+document.getElementById('kpi_all_n').textContent = '满分 5.0 · ' + allValidScores.length + ' 条评分';
+document.getElementById('kpi_top_dim').textContent = sortedCats[0][0];
+document.getElementById('kpi_top_val').textContent = sortedCats[0][1].toFixed(2);
+document.getElementById('kpi_bot_dim').textContent = sortedCats[sortedCats.length-1][0];
+document.getElementById('kpi_bot_val').textContent = sortedCats[sortedCats.length-1][1].toFixed(2);
+document.getElementById('kpi_subvpeer').textContent = (kpiSubAvg||0).toFixed(2) + ' / ' + (kpiPeerAvg||0).toFixed(2);
+document.getElementById('quadPos').textContent = '下级 ' + (kpiSubAvg||0).toFixed(2) + ' / 平级 ' + (kpiPeerAvg||0).toFixed(2);
+
+// ─── Dim Bars ───
+(function(){
+  var host = document.getElementById('dimBars'), html = '';
+  CATEGORIES.forEach(function(dim){
+    var d = DIM_AVGS[dim] || {peer:0, sub:0};
+    var pw = (d.peer/5*100).toFixed(1), sw = (d.sub/5*100).toFixed(1);
+    html += '<div class="bar-line"><div class="name">' + dim + '</div><div class="bar-track"><div class="bar-fill peer" style="width:0%" data-w="'+pw+'">' + d.peer.toFixed(2) + '</div></div></div>';
+    html += '<div class="bar-line" style="margin-top:-4px"><div class="name" style="color:#adb5bd;font-size:11px">　下级</div><div class="bar-track"><div class="bar-fill sub" style="width:0%" data-w="'+sw+'">' + d.sub.toFixed(2) + '</div></div></div>';
+  });
+  host.innerHTML = html;
+  requestAnimationFrame(function(){ setTimeout(function(){
+    host.querySelectorAll('.bar-fill').forEach(function(b){ b.style.width = b.dataset.w + '%'; });
+  }, 120); });
+})();
+
+// ─── Radar ───
+new Chart(document.getElementById('radarChart'), {
+  type: 'radar',
+  data: {
+    labels: CATEGORIES,
+    datasets: [{
+      label: '维度均分', data: CATEGORIES.map(c => catAvgs[c]),
+      backgroundColor: 'rgba(59,91,219,0.12)', borderColor: '#3b5bdb', borderWidth: 2,
+      pointBackgroundColor: '#3b5bdb', pointBorderColor: '#fff', pointRadius: 4, pointHoverRadius: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: { r: { min: 1, max: 5, ticks: { stepSize: 1, font: { size: 10 } }, pointLabels: { font: { size: 10 } } } },
+    plugins: { legend: { display: false } }
+  }
+});
+
+// ─── Bar Chart ───
+new Chart(document.getElementById('barChart'), {
+  type: 'bar',
+  data: {
+    labels: Q_KEYS.map(q => Q_TITLES[q]),
+    datasets: [{
+      label: '平均分', data: Q_KEYS.map(q => qAvgs[q]),
+      backgroundColor: Q_KEYS.map(q => { var v = qAvgs[q]; return v < 3.1 ? 'rgba(224,49,49,0.7)' : v < 3.5 ? 'rgba(240,140,0,0.7)' : 'rgba(47,158,68,0.7)'; }),
+      borderColor: Q_KEYS.map(q => { var v = qAvgs[q]; return v < 3.1 ? '#e03131' : v < 3.5 ? '#f08c00' : '#2f9e44'; }),
+      borderWidth: 1, borderRadius: 4
+    }]
+  },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    scales: { x: { min: 1, max: 5, ticks: { stepSize: 1, font: { size: 10 } }, grid: { color: '#eee' } }, y: { ticks: { font: { size: 11, weight: '600' } } } },
+    plugins: { legend: { display: false }, tooltip: { callbacks: { title: ctx => ctx[0].label + ' · ' + Q_FULL_TEXT[ctx[0].label], label: ctx => '平均分: ' + ctx.raw.toFixed(2) + ' · ' + Q_TO_DIM[ctx[0].label] } } }
+  }
+});
+
+// ─── Quadrant ───
+(function(){
+  var W = 420, H = 380, pad = 46, max = 5, min = 0;
+  var px = (kpiPeerAvg||3) / 5 * (W-2*pad) + pad;
+  var py = H - pad - ((kpiSubAvg||4) / 5 * (H-2*pad));
+  var cx = 3.5/5*(W-2*pad)+pad, cy = H-pad-3.5/5*(H-2*pad);
+  var s = '<svg viewBox="0 0 '+W+' '+H+'" width="100%" style="max-width:420px;font-family:inherit">';
+  s += '<rect x="'+pad+'" y="'+pad+'" width="'+(cx-pad)+'" height="'+(cy-pad)+'" fill="#fff5f5"/>';
+  s += '<rect x="'+cx+'" y="'+pad+'" width="'+(W-pad-cx)+'" height="'+(cy-pad)+'" fill="#e7f5ff"/>';
+  s += '<rect x="'+pad+'" y="'+cy+'" width="'+(cx-pad)+'" height="'+(H-pad-cy)+'" fill="#fff9db"/>';
+  s += '<rect x="'+cx+'" y="'+cy+'" width="'+(W-pad-cx)+'" height="'+(H-pad-cy)+'" fill="#ebfbee"/>';
+  s += '<line x1="'+pad+'" y1="'+cy+'" x2="'+(W-pad)+'" y2="'+cy+'" stroke="#adb5bd" stroke-width="1" stroke-dasharray="4 3"/>';
+  s += '<line x1="'+cx+'" y1="'+pad+'" x2="'+cx+'" y2="'+(H-pad)+'" stroke="#adb5bd" stroke-width="1" stroke-dasharray="4 3"/>';
+  s += '<text x="'+(W/2)+'" y="'+(H-10)+'" text-anchor="middle" font-size="11" fill="#5b6675">平级评价 →</text>';
+  s += '<text x="14" y="'+(H/2)+'" text-anchor="middle" font-size="11" fill="#5b6675" transform="rotate(-90 14 '+(H/2)+')">下级评价 →</text>';
+  s += '<text x="'+(W-pad-4)+'" y="'+(cy-4)+'" font-size="9" fill="#868e96" text-anchor="end">3.5</text>';
+  s += '<text x="'+(pad+4)+'" y="'+(cy-4)+'" font-size="9" fill="#868e96">3.5</text>';
+  [['中流砥柱','晋升优先',W-pad-6,pad+30,'end'],['内部人气王','偏袒·缺大局观',pad+6,pad+30,'start'],['向上/平级管理强','可能对下苛刻',W-pad-6,H-pad-14,'end'],['待改善/边缘化','需干预',pad+6,H-pad-14,'start']].forEach(function(l){
+    s += '<text x="'+l[2]+'" y="'+l[3]+'" text-anchor="'+l[5]+'" font-size="10" font-weight="700" fill="#495057">'+l[0]+'</text>';
+    s += '<text x="'+l[2]+'" y="'+(parseInt(l[3])+13)+'" text-anchor="'+l[5]+'" font-size="9" fill="#868e96">'+l[1]+'</text>';
+  });
+  s += '<circle cx="'+px+'" cy="'+py+'" r="8" fill="#e03131" stroke="#fff" stroke-width="2.5"/>';
+  s += '<text x="'+px+'" y="'+(py-12)+'" text-anchor="middle" font-size="11" font-weight="800" fill="#e03131">Kaixin Zhao</text>';
+  s += '</svg>';
+  document.getElementById('quadChart').innerHTML = s;
+})();
+
+// ─── Heatmap ───
+var tooltip = document.getElementById('tooltip');
+function showTip(text, e) { tooltip.innerHTML = text; tooltip.classList.add('show'); positionTip(e); }
+function positionTip(e) { var x = e.clientX+12, y=e.clientY+12, rect=tooltip.getBoundingClientRect(); tooltip.style.left=Math.min(x,window.innerWidth-rect.width-10)+'px'; tooltip.style.top=Math.min(y,window.innerHeight-rect.height-10)+'px'; }
+function hideTip() { tooltip.classList.remove('show'); }
+
+
+
+
+// ─── Open-ended ───
+function escapeHtml(s){ if(!s)return""; return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function renderOpenQ(data, cid){
+  var container = document.getElementById(cid);
+  var texts = data.map(function(d){ return escapeHtml(d.text || ''); }).filter(function(t){ return t.length > 0 && t !== '（未填写）' && t !== '/'; });
+  container.innerHTML = texts.length > 0 ? '<div class="comment-box"><div class="content">' + texts.map(function(t){ return '<div style="border-bottom:1px solid #e6eaf2;padding:8px 0;">' + t + '</div>'; }).join('') + '</div></div>' : '<div class="comment-box"><div class="content" style="color:#888;text-align:center;padding:20px 0;">暂无评价内容</div></div>';
+}
+renderOpenQ(DATA.q25, 'tab-q25'); renderOpenQ(DATA.q26, 'tab-q26'); renderOpenQ(DATA.q27, 'tab-q27');
+function switchTab(t){
+  var btns = document.querySelectorAll(".tab-btn");
+  for (var i = 0; i < btns.length; i++) { btns[i].classList.remove("active"); }
+  var panels = document.querySelectorAll(".tab-content");
+  for (var i = 0; i < panels.length; i++) { panels[i].style.display = "none"; }
+  var active = document.querySelector('[data-tab="' + t + '"]');
+  if (active) active.classList.add("active");
+  document.getElementById("tab-" + t).style.display = "block";
+}var avgLabels = Q_KEYS.map(function(q, i) { return Q_TITLES[q]; });
+new Chart(document.getElementById('avgBarChart'), {
+  type: 'bar', data: {labels: avgLabels, datasets: [{label: '平均分', data: Q_KEYS.map(function(q) { return qAvgs[q]; }),
+      backgroundColor: Q_KEYS.map(function(q) { var v = qAvgs[q]; if (v < 3.1) return 'rgba(224,49,49,0.7)'; if (v < 3.5) return 'rgba(240,140,0,0.7)'; return 'rgba(47,158,68,0.7)'; }), borderRadius: 4}]},
+  options: {indexAxis: 'y', responsive: true, maintainAspectRatio: false, scales: { x: { min: 1, max: 5, ticks: { stepSize: 1 } }, y: { ticks: { font: { size: 11, weight: '600' } } } },
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(ctx) { return '平均分: ' + ctx.raw.toFixed(2); } } } } }
+});</script>
+</body>
+</html>
