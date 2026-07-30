@@ -187,7 +187,9 @@ tr:hover td{background:#f8f9fb}
 <!-- 1. Dimension Overview -->
 <section>
 <div class="sec-h"><div class="ic">📊</div><h2>维度对比分析（平级 vs 下级）</h2><div class="en">Dimension Comparison</div></div>
-<div class="chart-row"><div><div class="legend"><span><i style="background:#3b5bdb"></i>上级</span><span><i style="background:#4263eb"></i>平级</span><span><i style="background:#e8590c"></i>下级</span><span style="color:#adb5bd;font-size:11px">(5 分制)</span></div><div id="dimBars" data-mode="super"></div></div><div style="display:flex;align-items:center;justify-content:center"><div id="radarWrap" style="width:100%;max-width:360px"><canvas id="radarChart"></canvas></div></div></div>
+<div class="chart-row">
+<div>
+<div class="legend"><span><i style="background:#4263eb"></i>平级均分</span><span><i style="background:#e8590c"></i>下级均分</span><span style="color:#adb5bd;font-size:11px">（5 分制）</span></div>
 <div id="dimBars"></div>
 </div>
 <div style="display:flex;align-items:center;justify-content:center">
@@ -198,53 +200,36 @@ tr:hover td{background:#f8f9fb}
 
 
 <!-- 3. Risk Analysis -->
-<section><div class="sec-h"><div class="ic">🚧</div><h2>待提升能力</h2><div class="en">Development Areas</div></div><div class="risk"><div class="rc"><div class="t">卡点 1 · Q5 执行与反馈 / Execution & Follo</div><div class="lv">需关注</div><p>综合均分 3.20，5 位有效评价者。该项能力尚未稳定展现，建议制定专项提升计划。</p></div><div class="rc amber"><div class="t">卡点 2 · Q10 集中意见 / Consolidating Pers</div><div class="lv">中</div><p>综合均分 3.20，5 位有效评价者。基本展现但频次/深度不足。</p></div><div class="rc amber"><div class="t">卡点 3 · Q11 识人预判 / Assessing Strength</div><div class="lv">中</div><p>综合均分 3.20，5 位有效评价者。能力基本合格但稳定性欠佳。</p></div></div></section>
+<section><div class="sec-h"><div class="ic">🚧</div><h2>待提升能力</h2><div class="en">Development Areas</div></div><div class="risk"><div class="rc"><div class="t">卡点 1 · Q5 执行与反馈 / Execution & Follo</div><div class="lv">需关注</div><p>综合均分 3.20（5 位有效评价者）。此项是该候选人能力短板，建议优先提升。</p></div><div class="rc amber"><div class="t">卡点 2 · Q10 集中意见 / Consolidating Pers</div><div class="lv">中</div><p>综合均分 3.20（5 位有效评价者）。能力基本合格但有提升空间。</p></div><div class="rc amber"><div class="t">卡点 3 · Q11 识人预判 / Assessing Strength</div><div class="lv">中</div><p>综合均分 3.20（5 位有效评价者）。建议纳入下阶段重点关注。</p></div></div></section>
 
-<section><div class="sec-h"><div class="ic">⚠️</div><h2>评价风险点</h2><div class="en">Evaluation Risks</div></div>
-<div class="note" style="margin-bottom:14px">⚠️ 数据可信度：本评估仅 5 位评价者，且上级（评价人02）评分显著偏低（多题 1-2 分 或 无法判断），建议结合上级一对一面谈交叉验证</div>
-<div class="risk">
-<div class="rc"><div class="t">风险 1 · 上级评分严重偏低</div><div class="lv">TOP 1</div><p>上级对候选人多题项评分仅 1-2 分，与平级（4 分为主）形成极大反差。需通过一对一沟通核实真实情况。</p></div>
-<div class="rc amber"><div class="t">风险 2 · 评价覆盖度低</div><div class="lv">TOP 2</div><p>上级在多题选择"无法判断"，覆盖不足。建议补充业务认知。</p></div>
-<div class="rc amber"><div class="t">风险 3 · 平级 vs 下级落差</div><div class="lv">TOP 3</div><p>下级（4-5 分）反馈明显优于平级（约 4 分），需关注实际表现差异。</p></div>
-</div></section>
+<section><div class="sec-h"><div class="ic">⚠️</div><h2>评价风险点</h2><div class="en">Evaluation Risks</div></div><div class="note" style="margin-bottom:14px">⚠️ 数据可信度：样本仅 5 位评价者，需结合多源数据交叉验证，尤其上级评价</div><div class="risk"><div class="rc"><div class="t">风险 1 · 上级 vs 下级严重背离</div><div class="lv">TOP 1</div><p>上级评分显著偏低，而下级评分高度认可，形成"上级紧/下级松"的强反差。这种结构性背离可能源于上级对角色的期望更高，或下级对上级的亲近偏差。建议上级一对一面谈。</p></div><div class="rc amber"><div class="t">风险 2 · 上级多项"无法判断"</div><div class="lv">TOP 2</div><p>上级在多项题项上选择"无法判断"（如情绪管理、识人用人等维度），可能反映上级对候选人日常工作了解不充分，需补充情景案例。</p></div><div class="rc amber"><div class="t">风险 3 · 上级评分与"高标准严要求"印象一致</div><div class="lv">TOP 3</div><p>平级评价提及候选人"对客高标准严要求、处理事情认真肯干"。上级低评分与该特质呼应，提示候选人需软化对外协作方式。</p></div></div></section>
 
-<section><div class="sec-h"><div class="ic">⭐</div><h2>优势与亮点</h2><div class="en">Strengths</div></div><div class="risk"><div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">亮点 1 · Q7 积极作出贡献 / Making Positive </div><div class="lv" style="background:#2f9e44">STRONG</div><p>综合均分 4.20，5 位有效评价者。下属评价尤为认可。</p></div><div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">亮点 2 · Q16 提高标准 / Raising Standards</div><div class="lv" style="background:#2f9e44">STRONG</div><p>综合均分 4.00，5 位有效评价者。</p></div><div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">亮点 3 · Q19 严格执行 / Strict Execution</div><div class="lv" style="background:#2f9e44">STRONG</div><p>综合均分 4.00，5 位有效评价者。</p></div></div></section>
+<section><div class="sec-h"><div class="ic">⭐</div><h2>优势与亮点</h2><div class="en">Strengths</div></div><div class="risk"><div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">亮点 1 · Q7 积极作出贡献 / Making Positive </div><div class="lv" style="background:#2f9e44">STRONG</div><p>综合均分 4.20（5 位有效评价者）。下属认可度极高，是核心优势项。</p></div><div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">亮点 2 · Q16 提高标准 / Raising Standards</div><div class="lv" style="background:#2f9e44">STRONG</div><p>综合均分 4.00（5 位有效评价者）。多评价者一致高分。</p></div><div class="rc" style="border-left:4px solid #2f9e44"><div class="t" style="color:#2f9e44">亮点 3 · Q19 严格执行 / Strict Execution</div><div class="lv" style="background:#2f9e44">STRONG</div><p>综合均分 4.00（5 位有效评价者）。</p></div></div></section>
 
 <!-- 4. Text Mining -->
-<section>
-<div class="sec-h"><div class="ic">🔍</div><h2>关键文本挖掘</h2><div class="en">Text Mining</div></div>
-<div class="tags">
-<span class="atag">封闭 / 信息不透明</span>
-<span class="atag em">情绪化 / 阴晴不定</span>
-<span class="atag em">双重标准</span>
-<span class="atag">HR 思维惯性</span>
-<span class="atag em">事后响应 / 缺预案</span>
-</div>
+<section><div class="sec-h"><div class="ic">🔍</div><h2>关键文本挖掘</h2><div class="en">Text Mining</div></div>
+<div class="tags"><span class="atag">情绪稳定性</span><span class="atag em">沟通能力</span><span class="atag">工作优先级</span><span class="atag em">对客态度</span><span class="atag">高标准严要求</span></div>
 <div class="taglist">
-<div class="tl"><div class="h">封闭 / 信息不透明<span>张雷·王瀚驰·谢静·c.fa</span></div><div class="q">"PVG 内部要求是：能不跟中台讲的事情都不要讲"</div></div>
-<div class="tl"><div class="h">情绪化 / 阴晴不定<span>Mathias XU·c.fa</span></div><div class="q">"发小女生脾气""耍大牌摆架子""偶尔会被情绪左右"</div></div>
-<div class="tl"><div class="h">双重标准<span>Mathias XU·王瀚驰</span></div><div class="q">"对华人的要求高出一截""不能公平看待合作人员"</div></div>
-<div class="tl"><div class="h">事后响应 / 缺预案<span>张雷·李章勇</span></div><div class="q">"多为事后响应，缺少前置监测""未制定预案打乱他人计划"</div></div>
-</div>
-<div class="note" style="margin-top:12px">未检出"压榨、甩锅"类词汇；核心负面语义簇为 <b>封闭、情绪化、双标</b>。</div>
-</section>
+<div class="tl"><div class="h">情绪稳定性<span>多位评价者</span></div><div class="q">"情绪要稳定... 考虑问题做出判断首先要基于事实不是主观认知地先判断"</div></div>
+<div class="tl"><div class="h">对上对下沟通<span>多位评价者</span></div><div class="q">"对上对下沟通能力" 为高频反馈项，建议加强沟通技巧培训（上级视角）</div></div>
+<div class="tl"><div class="h">工作轻重优先级<span>多位评价者</span></div><div class="q">"工作轻重" 是核心待提升项，建议建立优先级管理框架和要事第一方法论</div></div>
+<div class="tl"><div class="h">高标准严要求<span>平级评价</span></div><div class="q">"对客高标准严要求、处理事情认真肯干" — 是被认可特质，但需注意对外协作的方式</div></div>
+</div></section>
 
 <!-- 5. Quadrant -->
-<section>
-<div class="sec-h"><div class="ic">🧩</div><h2>综合评价矩阵</h2><div class="en">Quadrant Positioning</div></div>
+<section><div class="sec-h"><div class="ic">🧩</div><h2>综合评价矩阵</h2><div class="en">Quadrant Positioning</div></div>
 <div class="quad-wrap">
 <div id="quadChart"></div>
 <div>
 <div class="qcard" style="border-color:#ffc9c9;background:#fff5f5">
-<h4>📍 当前定位：堡垒型口岸管理者</h4>
-<div class="pos" id="quadPos">-</div>
-<p>偏袒内圈、缺乏大局观的风险型定位。低分集中于"信息开放度"单一断面，修复杠杆明确。真实画像介于"内部人气王"与"待改善"之间。</p>
+<h4>📍 当前定位：下属认可型执行者</h4>
+<div class="pos" id="quadPos">上级 2.7 / 平级 3.6 / 下级 4.2</div>
+<p>呈"上级偏严、下属认可"的强反差结构。候选人执行层表现获下属支持，但上级对其在高标准执行、情绪管理、识人用人上的评价明显偏低。需上级一对一面谈核实。</p>
 </div>
 <div class="qcard" style="margin-top:12px"><h4>💡 人才决策</h4>
-<p><b style="color:var(--good)">保留 + 定向发展（Develop in place）</b>。新任 GM 爬坡期，业务潜力被认可；若 6–12 个月内"封闭对抗中台"无改善，再重新评估。</p></div>
+<p><b style="color:var(--good)">保留 + 定向培养（Develop in place）</b>。执行能力强，下属反馈稳定；但需在管理软技能（沟通/情绪）和对上级沟通方式上重点提升。</p></div>
 </div>
-</div>
-</section>
+</div></section>
 
 
 <!-- 7. Heatmap -->
@@ -269,7 +254,11 @@ tr:hover td{background:#f8f9fb}
 
 
 
-<section><div class="sec-h"><div class="ic">📝</div><h2>综合评价总结</h2><div class="en">Overall Summary</div></div><div class="reli-grid"><div class="rcard"><h4>评估概况</h4><p>本次 360 评估覆盖 25 项胜任力指标，5 维度，5 位评价者（1 上级 + 2 平级 + 2 下级）。综合均分 <b style="color:var(--brand)">3.66</b>。</p><p>• <b>上级视角：</b>2.72 分（评分偏低，需核实）<br>• <b>平级视角：</b>3.60 分<br>• <b>下级视角：</b>4.20 分<br>• <b>最大分歧项：</b>Q3</p></div><div class="rcard"><h4>发展建议</h4><p>① 安排上级一对一深度沟通<br>② 提升情绪稳定性与人际沟通能力<br>③ 拓展人员管理软技能<br>④ 建立工作优先级管理框架</p></div></div></section>
+<section><div class="sec-h"><div class="ic">📝</div><h2>综合评价总结</h2><div class="en">Overall Summary</div></div>
+<div class="reli-grid">
+<div class="rcard"><h4>评估概况</h4><p>本次 360 评估覆盖 25 项胜任力指标，5 维度，5 位评价者（1 上级 + 2 平级 + 2 下级）。综合均分 <b style="color:var(--brand)">3.66</b>。</p><p>• <b>上级视角：</b>2.72 分（评分显著偏低）<br>• <b>平级视角：</b>3.60 分<br>• <b>下级视角：</b>4.20 分<br>• <b>最大分歧项：</b>Q3</p></div>
+<div class="rcard"><h4>发展建议</h4><p>① 安排上级一对一深度沟通，核实低分背后的真实场景<br>② 提升情绪稳定性与人际沟通能力（特别是对上沟通）<br>③ 建立工作优先级管理框架<br>④ 软化对外协作方式，从"高标准严要求"向"共识建设"转变</p></div>
+</div></section>
 
 <footer>
 数据来源：360 胜任力评估问卷 ｜ 本看板基于 5 份问卷的评分与开放文本生成<br>
@@ -342,31 +331,20 @@ document.getElementById('kpi_bot_val').textContent = sortedCats[sortedCats.lengt
 document.getElementById('kpi_subvpeer').textContent = (kpiSubAvg||0).toFixed(2) + ' / ' + (kpiPeerAvg||0).toFixed(2);
 document.getElementById('quadPos').textContent = '下级 ' + (kpiSubAvg||0).toFixed(2) + ' / 平级 ' + (kpiPeerAvg||0).toFixed(2);
 
-
-// ─── Dim Bars (3 categories) ───
+// ─── Dim Bars ───
 (function(){
   var host = document.getElementById('dimBars'), html = '';
   CATEGORIES.forEach(function(dim){
-    var d = DIM_AVGS[dim] || {sup:0, peer:0, sub:0};
-    html += '<div style="margin:6px 0;">';
-    html += '<div class="name" style="font-size:12px;color:#5b6675;margin-bottom:3px;">' + dim + '</div>';
-    var rows = [{label: '上级', val: d.sup, color: '#3b5bdb'}, {label: '平级', val: d.peer, color: '#4263eb'}, {label: '下级', val: d.sub, color: '#e8590c'}];
-    rows.forEach(function(r){
-      var w = (r.val/5*100).toFixed(1);
-      html += '<div style="display:flex;align-items:center;height:18px;margin-bottom:2px;">';
-      html += '<div style="width:50px;font-size:11px;color:' + r.color + ';">' + r.label + '</div>';
-      html += '<div style="flex:1;background:#f1f3f9;border-radius:4px;height:18px;position:relative;overflow:hidden;">';
-      html += '<div style="background:' + r.color + ';height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;color:#fff;font-size:11px;font-weight:600;transition:width 1s;width:0%" data-w="' + w + '">' + r.val.toFixed(2) + '</div></div>';
-      html += '</div>';
-    });
-    html += '</div>';
+    var d = DIM_AVGS[dim] || {peer:0, sub:0};
+    var pw = (d.peer/5*100).toFixed(1), sw = (d.sub/5*100).toFixed(1);
+    html += '<div class="bar-line"><div class="name">' + dim + '</div><div class="bar-track"><div class="bar-fill peer" style="width:0%" data-w="'+pw+'">' + d.peer.toFixed(2) + '</div></div></div>';
+    html += '<div class="bar-line" style="margin-top:-4px"><div class="name" style="color:#adb5bd;font-size:11px">　下级</div><div class="bar-track"><div class="bar-fill sub" style="width:0%" data-w="'+sw+'">' + d.sub.toFixed(2) + '</div></div></div>';
   });
   host.innerHTML = html;
-  setTimeout(function(){
-    host.querySelectorAll('div[style*="transition:width 1s"]').forEach(function(b){ b.style.width = b.dataset.w + '%'; });
-  }, 200);
+  requestAnimationFrame(function(){ setTimeout(function(){
+    host.querySelectorAll('.bar-fill').forEach(function(b){ b.style.width = b.dataset.w + '%'; });
+  }, 120); });
 })();
-
 
 // ─── Radar ───
 new Chart(document.getElementById('radarChart'), {
